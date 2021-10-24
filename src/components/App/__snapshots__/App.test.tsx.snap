@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<main
+  className="sc-bdvvtL fzXjkc"
+>
+  <div>
+    <h1>
+      Sell EUR
+    </h1>
+    <p>
+      €1 = $1.16
+    </p>
+    <div>
+      <button>
+        EUR
+      </button>
+      <p>
+        Balance: 10
+      </p>
+      <input
+        placeholder="0"
+        type="number"
+      />
+    </div>
+    <button>
+      ↓
+    </button>
+    <div>
+      <button>
+        USD
+      </button>
+      <p>
+        Balance: 30
+      </p>
+      <input
+        placeholder="0"
+        type="number"
+      />
+    </div>
+    <button>
+      Sell EUR to USD
+    </button>
+  </div>
+</main>
+`;
