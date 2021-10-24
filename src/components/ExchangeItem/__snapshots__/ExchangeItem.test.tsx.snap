@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExchangeItem matches snapshot 1`] = `
+<div>
+  <button>
+    EUR
+  </button>
+  <p>
+    Balance: 
+    10
+  </p>
+  <input
+    placeholder="0"
+    type="number"
+  />
+</div>
+`;

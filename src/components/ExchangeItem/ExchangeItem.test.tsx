@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import 'jest-styled-components'
-import App from './App';
+import 'jest-styled-components';
+import ExchangeItem from './ExchangeItem';
 
-describe('App', () => {
+describe('ExchangeItem', () => {
     it('matches snapshot', () => {
         const tree = renderer
-            .create(<App />)
+            .create(<ExchangeItem currency="EUR" balance={10} />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     })

@@ -2,28 +2,38 @@
 
 exports[`App matches snapshot 1`] = `
 <main
-  className="sc-bdvvtL fzXjkc"
+  className=""
 >
-  <div>
+  <div
+    className=""
+  >
     <h1>
-      Sell EUR
+      Sell
+       
+      EUR
     </h1>
     <p>
-      €1 = $1.16
+      €
+      1 = 
+      $
+      1.16
     </p>
     <div>
       <button>
         EUR
       </button>
       <p>
-        Balance: 10
+        Balance: 
+        10
       </p>
       <input
         placeholder="0"
         type="number"
       />
     </div>
-    <button>
+    <button
+      onClick={[Function]}
+    >
       ↓
     </button>
     <div>
@@ -31,7 +41,8 @@ exports[`App matches snapshot 1`] = `
         USD
       </button>
       <p>
-        Balance: 30
+        Balance: 
+        30
       </p>
       <input
         placeholder="0"
@@ -39,7 +50,11 @@ exports[`App matches snapshot 1`] = `
       />
     </div>
     <button>
-      Sell EUR to USD
+      Sell
+       
+      EUR
+       to 
+      USD
     </button>
   </div>
 </main>

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exchange matches snapshot 1`] = `
+<div
+  className=""
+>
+  <h1>
+    Sell
+     
+    EUR
+  </h1>
+  <p>
+    €
+    1 = 
+    $
+    1.16
+  </p>
+  <div>
+    <button>
+      EUR
+    </button>
+    <p>
+      Balance: 
+      10
+    </p>
+    <input
+      placeholder="0"
+      type="number"
+    />
+  </div>
+  <button
+    onClick={[Function]}
+  >
+    ↓
+  </button>
+  <div>
+    <button>
+      USD
+    </button>
+    <p>
+      Balance: 
+      30
+    </p>
+    <input
+      placeholder="0"
+      type="number"
+    />
+  </div>
+  <button>
+    Sell
+     
+    EUR
+     to 
+    USD
+  </button>
+</div>
+`;
