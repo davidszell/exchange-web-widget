@@ -1,13 +1,20 @@
 import { useMemo, useState } from "react"
 
-const useExchange = () => {
-    type WalletType = {
-        name: string,
-        balance: number,
-        longName: string,
-        symbol: string
-    }
+export type WalletType = {
+    name: string,
+    balance: number,
+    longName: string,
+    symbol: string
+}
 
+export type ExchangeRatesType = {
+    base: string,
+    rates: {
+        [id: string]: number
+    }
+}
+
+const useExchange = () => {
     const wallets: WalletType[] = [
         {
             name: "EUR",
@@ -29,13 +36,6 @@ const useExchange = () => {
         }
     ];
 
-    type ExchangeRatesType = {
-        base: string,
-        rates: {
-            [id: string]: number
-        }
-    }
-
     const exchangeRates: ExchangeRatesType = {
         base: "EUR",
         rates: {
@@ -47,22 +47,83 @@ const useExchange = () => {
 
     const [fromCurrency, setFromCurrency] = useState(wallets[0]);
     const [toCurrency, setToCurrency] = useState(wallets[2]);
+    const [fromAmount, setFromAmount] = useState(0);
+    const [toAmount, setToAmount] = useState(0);
+    const [isSell, setSell] = useState(true);
 
-    const exchangeRate = useMemo(() => {
+    const exchangeRate: number = useMemo(() => {
         if (fromCurrency.name == exchangeRates.base) {
-            return exchangeRates.rates[toCurrency.name].toFixed(2);
+            return exchangeRates.rates[toCurrency.name];
         }
         const fromRate = exchangeRates.rates[fromCurrency.name];
         const toRate = exchangeRates.rates[toCurrency.name];
 
-        return (toRate / fromRate).toFixed(2);
+        return (toRate / fromRate);
         
     }, [fromCurrency, toCurrency]);
+
+    const handleFromCurrencyChange = (currencyName: string) => {
+        if (fromCurrency.name == currencyName) {
+            return;
+        }
+
+        const newCurrency = wallets.find((item) => item.name == currencyName);
+
+        if (!newCurrency) {
+            return;
+        }
+
+        if (toCurrency.name == currencyName) {
+            setToCurrency(fromCurrency);
+        }
+
+        setFromCurrency(newCurrency);
+    }
+
+    const handleToCurrencyChange = (currencyName: string) => {
+        if (toCurrency.name == currencyName) {
+            return;
+        }
+
+        const newCurrency = wallets.find((item) => item.name == currencyName);
+
+        if (!newCurrency) {
+            return;
+        }
+
+        if (fromCurrency.name == currencyName) {
+            setFromCurrency(toCurrency);
+        }
+
+        setToCurrency(newCurrency);
+    }
+
+    const handleFromAmountChange = (newAmount: number) => {
+        setFromAmount(newAmount);
+        setToAmount(newAmount * exchangeRate);
+    }
+
+    const handleToAmountChange = (newAmount: number) => {
+        setToAmount(newAmount);
+        setFromAmount(newAmount * exchangeRate);
+    }
+
+    const toggleSell = () => {
+        setSell((prevIsSell) => !prevIsSell);
+    }
 
     return {
         fromCurrency,
         toCurrency,
-        exchangeRate
+        fromAmount,
+        toAmount,
+        exchangeRate,
+        isSell,
+        handleFromCurrencyChange,
+        handleToCurrencyChange,
+        handleFromAmountChange,
+        handleToAmountChange,
+        toggleSell
     }
 }
 

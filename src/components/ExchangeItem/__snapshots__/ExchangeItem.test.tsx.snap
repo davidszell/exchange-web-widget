@@ -2,7 +2,9 @@
 
 exports[`ExchangeItem matches snapshot 1`] = `
 <div>
-  <button>
+  <button
+    onClick={[Function]}
+  >
     EUR
   </button>
   <p>
@@ -10,8 +12,10 @@ exports[`ExchangeItem matches snapshot 1`] = `
     10
   </p>
   <input
+    onChange={[Function]}
     placeholder="0"
     type="number"
+    value={0}
   />
 </div>
 `;

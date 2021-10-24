@@ -4,19 +4,25 @@ exports[`Exchange matches snapshot 1`] = `
 <div
   className=""
 >
-  <h1>
+  <h1
+    data-testid="header"
+  >
     Sell
      
     EUR
   </h1>
-  <p>
+  <p
+    data-testid="exchangeRate"
+  >
     €
     1 = 
     $
     1.16
   </p>
   <div>
-    <button>
+    <button
+      onClick={[Function]}
+    >
       EUR
     </button>
     <p>
@@ -24,17 +30,22 @@ exports[`Exchange matches snapshot 1`] = `
       10
     </p>
     <input
+      onChange={[Function]}
       placeholder="0"
       type="number"
+      value={0}
     />
   </div>
   <button
+    data-testid="directionButton"
     onClick={[Function]}
   >
     ↓
   </button>
   <div>
-    <button>
+    <button
+      onClick={[Function]}
+    >
       USD
     </button>
     <p>
@@ -42,11 +53,15 @@ exports[`Exchange matches snapshot 1`] = `
       30
     </p>
     <input
+      onChange={[Function]}
       placeholder="0"
       type="number"
+      value={0}
     />
   </div>
-  <button>
+  <button
+    data-testid="exchangeButton"
+  >
     Sell
      
     EUR
