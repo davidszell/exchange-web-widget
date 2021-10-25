@@ -15,7 +15,7 @@ export type ExchangeRatesType = {
 }
 
 const useExchange = () => {
-    const wallets: WalletType[] = [
+    const initialWallets: WalletType[] = [
         {
             name: "EUR",
             balance: 10,
@@ -36,7 +36,7 @@ const useExchange = () => {
         }
     ];
 
-    const exchangeRates: ExchangeRatesType = {
+    const initialExchangeRates: ExchangeRatesType = {
         base: "EUR",
         rates: {
             "EUR": 1,
@@ -44,6 +44,9 @@ const useExchange = () => {
             "USD": 1.16
         }
     }
+
+    const [exchangeRates, setExchangeRates] = useState(initialExchangeRates);
+    const [wallets, setWallets] = useState(initialWallets);
 
     const [fromCurrency, setFromCurrency] = useState(wallets[0]);
     const [toCurrency, setToCurrency] = useState(wallets[2]);
@@ -60,7 +63,7 @@ const useExchange = () => {
 
         return (toRate / fromRate);
         
-    }, [fromCurrency, toCurrency]);
+    }, [fromCurrency, toCurrency, exchangeRates]);
 
     const handleFromCurrencyChange = (currencyName: string) => {
         if (fromCurrency.name == currencyName) {
@@ -78,6 +81,8 @@ const useExchange = () => {
         }
 
         setFromCurrency(newCurrency);
+        setFromAmount(0);
+        setToAmount(0);
     }
 
     const handleToCurrencyChange = (currencyName: string) => {
@@ -96,6 +101,8 @@ const useExchange = () => {
         }
 
         setToCurrency(newCurrency);
+        setFromAmount(0);
+        setToAmount(0);
     }
 
     const handleFromAmountChange = (newAmount: number) => {
