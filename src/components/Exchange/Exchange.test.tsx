@@ -37,12 +37,12 @@ describe('Exchange', () => {
 
     it('Shows correct exchange button label', () => {
         render(<Exchange />);
-        expect(screen.getByTestId('exchangeButton')).toHaveTextContent('Sell');
+        expect(screen.getByTestId('exchangeButton')).toHaveTextContent(/^Sell [a-zA-z]* for [a-zA-z]*$/);
     });
 
     it('Shows correct exchange button label after direction change', () => {
         render(<Exchange />);
         fireEvent.click(screen.getByTestId('directionButton'));
-        expect(screen.getByTestId('exchangeButton')).toHaveTextContent('Buy');
+        expect(screen.getByTestId('exchangeButton')).toHaveTextContent(/^Buy [a-zA-z]* with [a-zA-z]*$/);
     });
 })

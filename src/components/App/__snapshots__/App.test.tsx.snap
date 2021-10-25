@@ -85,7 +85,9 @@ exports[`App matches snapshot 1`] = `
       Sell
        
       EUR
-       to 
+       
+      for
+       
       USD
     </button>
   </div>

@@ -31,7 +31,7 @@ const Exchange = (): JSX.Element => {
             <button data-testid="directionButton" onClick={handleExchangeDirectionChange}>{isSell ? "↓" : "↑"}</button>
             <ExchangeItem currency={toCurrency} handleCurrencyChange={handleToCurrencyChange}
                 amount={toAmount} handleAmountChange={handleToAmountChange} />
-            <button data-testid="exchangeButton">{isSell ? "Sell" : "Buy"} {fromCurrency.name} to {toCurrency.name}</button>
+            <button data-testid="exchangeButton">{isSell ? "Sell" : "Buy"} {fromCurrency.name} {isSell ? "for" : "with"} {toCurrency.name}</button>
         </Container>
     )
 }
