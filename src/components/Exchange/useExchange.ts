@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react"
+import { useAppSelector } from "../../reduxHooks";
 
 export type WalletType = {
     name: string,
@@ -17,41 +18,12 @@ export type ExchangeRatesType = {
 export type ExchangeDirectionType = 'buy' | 'sell';
 
 const useExchange = () => {
-    const initialWallets: WalletType[] = [
-        {
-            name: "EUR",
-            balance: 10,
-            longName: "Euro",
-            symbol: "€"
-        },
-        {
-            name: "GBP",
-            balance: 20,
-            longName: "British Pounds",
-            symbol: "£"
-        },
-        {
-            name: "USD",
-            balance: 30,
-            longName: "US Dollars",
-            symbol: "$"
-        }
-    ];
 
-    const initialExchangeRates: ExchangeRatesType = {
-        base: "EUR",
-        rates: {
-            "EUR": 1,
-            "GBP": 0.85,
-            "USD": 1.16
-        }
-    }
-
-    const [exchangeRates, setExchangeRates] = useState(initialExchangeRates);
-    const [wallets, setWallets] = useState(initialWallets);
+    const wallets = useAppSelector(state => state.wallets);
+    const exchangeRates = useAppSelector(state => state.exchangeRates);
 
     const [fromWallet, setFromWallet] = useState<WalletType>(wallets[0]);
-    const [toWallet, setToWallet] = useState<WalletType>(wallets[2]);
+    const [toWallet, setToWallet] = useState<WalletType>(wallets[1]);
     const [fromAmount, setFromAmount] = useState<number>(0);
     const [toAmount, setToAmount] = useState<number>(0);
     const [direction, setDirection] = useState<ExchangeDirectionType>('sell');

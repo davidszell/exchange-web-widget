@@ -16,8 +16,8 @@ exports[`Exchange matches snapshot 1`] = `
   >
     €
     1 = 
-    $
-    1.16
+    £
+    0.85
   </p>
   <div>
     <button
@@ -46,11 +46,11 @@ exports[`Exchange matches snapshot 1`] = `
     <button
       onClick={[Function]}
     >
-      USD
+      GBP
     </button>
     <p>
       Balance: 
-      30
+      20
     </p>
     <input
       onChange={[Function]}
@@ -68,7 +68,7 @@ exports[`Exchange matches snapshot 1`] = `
      
     for
      
-    USD
+    GBP
   </button>
 </div>
 `;

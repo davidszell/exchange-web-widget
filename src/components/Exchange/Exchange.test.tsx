@@ -1,4 +1,5 @@
 import React from 'react';
+import * as reduxHooks from '../../reduxHooks';
 import renderer from 'react-test-renderer';
 import {render, fireEvent, screen} from '@testing-library/react'
 import '@testing-library/jest-dom';
@@ -6,6 +7,46 @@ import 'jest-styled-components';
 import Exchange from './Exchange';
 
 describe('Exchange', () => {
+    const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector');
+
+    beforeEach(() => {
+        useSelectorMock.mockImplementation(selector => selector(mockStore));
+    })
+    afterEach(() => {
+        useSelectorMock.mockClear();
+    })
+
+    const mockStore = {
+        wallets: [
+            {
+                name: "EUR",
+                balance: 10,
+                longName: "Euro",
+                symbol: "€"
+            },
+            {
+                name: "GBP",
+                balance: 20,
+                longName: "British Pounds",
+                symbol: "£"
+            },
+            {
+                name: "USD",
+                balance: 30,
+                longName: "US Dollars",
+                symbol: "$"
+            }
+        ],
+        exchangeRates: {
+            base: "EUR",
+            rates: {
+                "EUR": 1,
+                "GBP": 0.85,
+                "USD": 1.16
+            }
+        }
+    };
+
     it('matches snapshot', () => {
         const tree = renderer
             .create(<Exchange />)

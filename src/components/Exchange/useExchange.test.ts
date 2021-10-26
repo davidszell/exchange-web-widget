@@ -1,7 +1,48 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import useExchange, { WalletType } from './useExchange';
+import useExchange from './useExchange';
+import * as reduxHooks from '../../reduxHooks';
 
 describe('useExchange', () => {
+    const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector');
+
+    beforeEach(() => {
+        useSelectorMock.mockImplementation(selector => selector(mockStore));
+    })
+    afterEach(() => {
+        useSelectorMock.mockClear();
+    })
+
+    const mockStore = {
+        wallets: [
+            {
+                name: "EUR",
+                balance: 10,
+                longName: "Euro",
+                symbol: "€"
+            },
+            {
+                name: "GBP",
+                balance: 20,
+                longName: "British Pounds",
+                symbol: "£"
+            },
+            {
+                name: "USD",
+                balance: 30,
+                longName: "US Dollars",
+                symbol: "$"
+            }
+        ],
+        exchangeRates: {
+            base: "EUR",
+            rates: {
+                "EUR": 1,
+                "GBP": 0.85,
+                "USD": 1.16
+            }
+        }
+    };
+
     it("returns 0 as default fromAmount", () => {
         const { result } = renderHook(useExchange)
         expect(result.current.fromAmount).toBe(0)
@@ -16,6 +57,16 @@ describe('useExchange', () => {
         const { result } = renderHook(useExchange)
         expect(result.current.direction).toBe('sell')
     });
+
+    it("returns first wallet elements as default fromAmount", () => {
+        const { result } = renderHook(useExchange)
+        expect(result.current.fromWallet).toEqual(mockStore.wallets[0]);
+    })
+
+    it("returns second wallet elements as default toAmount", () => {
+        const { result } = renderHook(useExchange)
+        expect(result.current.toWallet).toEqual(mockStore.wallets[1]);
+    })
 
     it("updates the fromAmount", () => {
         const { result } = renderHook(useExchange)
@@ -58,53 +109,35 @@ describe('useExchange', () => {
     })
 
     it("updates the fromWallet", () => {
-        const newWallet: WalletType = {
-            name: "GBP",
-            balance: 20,
-            longName: "British Pounds",
-            symbol: "£"
-        }
         const { result } = renderHook(useExchange)
         act(() => {
-            result.current.handleFromWalletChange(newWallet.name)
+            result.current.handleFromWalletChange(mockStore.wallets[2].name)
         })
-        expect(result.current.fromWallet).toEqual(newWallet)
+        expect(result.current.fromWallet).toEqual(mockStore.wallets[2])
     })
 
     it("updates the toWallet", () => {
-        const newWallet: WalletType = {
-            name: "GBP",
-            balance: 20,
-            longName: "British Pounds",
-            symbol: "£"
-        }
         const { result } = renderHook(useExchange)
         act(() => {
-            result.current.handleToWalletChange(newWallet.name)
+            result.current.handleToWalletChange(mockStore.wallets[2].name)
         })
-        expect(result.current.toWallet).toEqual(newWallet)
+        expect(result.current.toWallet).toEqual(mockStore.wallets[2])
     })
 
     it("updates swaps fromWallet with toWallet when updating fromWallet to toWallet", () => {
         const { result } = renderHook(useExchange)
-
-        const initialFromWallet = result.current.fromWallet
-        const initialToWallet = result.current.toWallet
         act(() => {
-            result.current.handleFromWalletChange(initialToWallet.name)
+            result.current.handleFromWalletChange(mockStore.wallets[1].name)
         })
-        expect(result.current.toWallet).toEqual(initialFromWallet)
+        expect(result.current.toWallet).toEqual(mockStore.wallets[0])
     })
 
     it("updates swaps fromWallet with toWallet when updating toWallet to fromWallet", () => {
         const { result } = renderHook(useExchange)
-
-        const initialFromWallet = result.current.fromWallet
-        const initialToWallet = result.current.toWallet
         act(() => {
-            result.current.handleToWalletChange(initialFromWallet.name)
+            result.current.handleToWalletChange(mockStore.wallets[0].name)
         })
-        expect(result.current.fromWallet).toEqual(initialToWallet)
+        expect(result.current.fromWallet).toEqual(mockStore.wallets[1])
     })
 
     it("clears fromAmount when updating fromWallet", () => {
@@ -114,7 +147,7 @@ describe('useExchange', () => {
             result.current.handleFromAmountChange(10)
         })
         act(() => {
-            result.current.handleFromWalletChange("GBP")
+            result.current.handleFromWalletChange(mockStore.wallets[2].name)
         })
         expect(result.current.fromAmount).toEqual(0)
     })
@@ -126,7 +159,7 @@ describe('useExchange', () => {
             result.current.handleFromAmountChange(10)
         })
         act(() => {
-            result.current.handleToWalletChange("GBP")
+            result.current.handleToWalletChange(mockStore.wallets[2].name)
         })
         expect(result.current.fromAmount).toEqual(0)
     })
@@ -138,7 +171,7 @@ describe('useExchange', () => {
             result.current.handleToAmountChange(10)
         })
         act(() => {
-            result.current.handleFromWalletChange("GBP")
+            result.current.handleFromWalletChange(mockStore.wallets[2].name)
         })
         expect(result.current.toAmount).toEqual(0)
     })
@@ -150,7 +183,7 @@ describe('useExchange', () => {
             result.current.handleToAmountChange(10)
         })
         act(() => {
-            result.current.handleToWalletChange("GBP")
+            result.current.handleToWalletChange(mockStore.wallets[2].name)
         })
         expect(result.current.toAmount).toEqual(0)
     })
