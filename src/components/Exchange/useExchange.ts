@@ -39,18 +39,18 @@ const useExchange = () => {
 
     }, [fromWallet, toWallet, exchangeRates]);
 
-    const handleFromWalletChange = (currencyName: string) => {
-        if (fromWallet.name == currencyName) {
+    const handleFromWalletChange = (walletName: string) => {
+        if (fromWallet.name == walletName) {
             return;
         }
 
-        const newCurrency = wallets.find((item) => item.name == currencyName);
+        const newCurrency = wallets.find((item) => item.name == walletName);
 
         if (!newCurrency) {
             return;
         }
 
-        if (toWallet.name == currencyName) {
+        if (toWallet.name == walletName) {
             setToWallet(fromWallet);
         }
 
@@ -59,18 +59,18 @@ const useExchange = () => {
         setToAmount(0);
     }
 
-    const handleToWalletChange = (currencyName: string) => {
-        if (toWallet.name == currencyName) {
+    const handleToWalletChange = (walletName: string) => {
+        if (toWallet.name == walletName) {
             return;
         }
 
-        const newCurrency = wallets.find((item) => item.name == currencyName);
+        const newCurrency = wallets.find((item) => item.name == walletName);
 
         if (!newCurrency) {
             return;
         }
 
-        if (fromWallet.name == currencyName) {
+        if (fromWallet.name == walletName) {
             setFromWallet(toWallet);
         }
 
