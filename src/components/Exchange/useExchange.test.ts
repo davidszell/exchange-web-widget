@@ -187,4 +187,40 @@ describe('useExchange', () => {
         })
         expect(result.current.toAmount).toEqual(0)
     })
+
+    it("toAmount is calculated from exchangeRates when changing fromAmount", () => {
+        const { result } = renderHook(useExchange)
+
+        act(() => {
+            result.current.handleFromAmountChange(10)
+        })
+        expect(result.current.toAmount).toBeCloseTo(8.5)
+    })
+
+    it("fromAmount is calculated from exchangeRates when changing toAmount", () => {
+        const { result } = renderHook(useExchange)
+
+        act(() => {
+            result.current.handleToAmountChange(10)
+        })
+        expect(result.current.fromAmount).toBeCloseTo(11.76)
+    })
+
+    it("updates toAmount correctly when trying to set fromAmount to a negative number", () => {
+        const { result } = renderHook(useExchange)
+
+        act(() => {
+            result.current.handleFromAmountChange(-1)
+        })
+        expect(result.current.toAmount).toBe(0)
+    })
+
+    it("updates fromAmount correctly when trying to set toAmount to a negative number", () => {
+        const { result } = renderHook(useExchange)
+
+        act(() => {
+            result.current.handleToAmountChange(-1)
+        })
+        expect(result.current.fromAmount).toBe(0)
+    })
 });

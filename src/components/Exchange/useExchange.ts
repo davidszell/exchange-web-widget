@@ -36,7 +36,7 @@ const useExchange = () => {
         const toRate = exchangeRates.rates[toWallet.name];
 
         return (toRate / fromRate);
-        
+
     }, [fromWallet, toWallet, exchangeRates]);
 
     const handleFromWalletChange = (currencyName: string) => {
@@ -80,13 +80,25 @@ const useExchange = () => {
     }
 
     const handleFromAmountChange = (newAmount: number) => {
-        setFromAmount(Math.max(newAmount, 0));
-        setToAmount(newAmount * exchangeRate);
+        if (newAmount > 0) {
+            setFromAmount(newAmount);
+            setToAmount(newAmount * exchangeRate);
+        } else {
+            setToAmount(0);
+            setFromAmount(0);
+        }
+
     }
 
     const handleToAmountChange = (newAmount: number) => {
-        setToAmount(Math.max(newAmount, 0));
-        setFromAmount(newAmount * exchangeRate);
+        if (newAmount > 0) {
+            setToAmount(newAmount);
+            setFromAmount(newAmount / exchangeRate);
+        } else {
+            setToAmount(0);
+            setFromAmount(0);
+        }
+
     }
 
     const toggleDirection = () => {
