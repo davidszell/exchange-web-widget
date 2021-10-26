@@ -14,6 +14,8 @@ export type ExchangeRatesType = {
     }
 }
 
+export type ExchangeDirectionType = 'buy' | 'sell';
+
 const useExchange = () => {
     const initialWallets: WalletType[] = [
         {
@@ -48,25 +50,25 @@ const useExchange = () => {
     const [exchangeRates, setExchangeRates] = useState(initialExchangeRates);
     const [wallets, setWallets] = useState(initialWallets);
 
-    const [fromCurrency, setFromCurrency] = useState(wallets[0]);
-    const [toCurrency, setToCurrency] = useState(wallets[2]);
-    const [fromAmount, setFromAmount] = useState(0);
-    const [toAmount, setToAmount] = useState(0);
-    const [isSell, setSell] = useState(true);
+    const [fromWallet, setFromWallet] = useState<WalletType>(wallets[0]);
+    const [toWallet, setToWallet] = useState<WalletType>(wallets[2]);
+    const [fromAmount, setFromAmount] = useState<number>(0);
+    const [toAmount, setToAmount] = useState<number>(0);
+    const [direction, setDirection] = useState<ExchangeDirectionType>('sell');
 
     const exchangeRate: number = useMemo(() => {
-        if (fromCurrency.name == exchangeRates.base) {
-            return exchangeRates.rates[toCurrency.name];
+        if (fromWallet.name == exchangeRates.base) {
+            return exchangeRates.rates[toWallet.name];
         }
-        const fromRate = exchangeRates.rates[fromCurrency.name];
-        const toRate = exchangeRates.rates[toCurrency.name];
+        const fromRate = exchangeRates.rates[fromWallet.name];
+        const toRate = exchangeRates.rates[toWallet.name];
 
         return (toRate / fromRate);
         
-    }, [fromCurrency, toCurrency, exchangeRates]);
+    }, [fromWallet, toWallet, exchangeRates]);
 
-    const handleFromCurrencyChange = (currencyName: string) => {
-        if (fromCurrency.name == currencyName) {
+    const handleFromWalletChange = (currencyName: string) => {
+        if (fromWallet.name == currencyName) {
             return;
         }
 
@@ -76,17 +78,17 @@ const useExchange = () => {
             return;
         }
 
-        if (toCurrency.name == currencyName) {
-            setToCurrency(fromCurrency);
+        if (toWallet.name == currencyName) {
+            setToWallet(fromWallet);
         }
 
-        setFromCurrency(newCurrency);
+        setFromWallet(newCurrency);
         setFromAmount(0);
         setToAmount(0);
     }
 
-    const handleToCurrencyChange = (currencyName: string) => {
-        if (toCurrency.name == currencyName) {
+    const handleToWalletChange = (currencyName: string) => {
+        if (toWallet.name == currencyName) {
             return;
         }
 
@@ -96,41 +98,41 @@ const useExchange = () => {
             return;
         }
 
-        if (fromCurrency.name == currencyName) {
-            setFromCurrency(toCurrency);
+        if (fromWallet.name == currencyName) {
+            setFromWallet(toWallet);
         }
 
-        setToCurrency(newCurrency);
+        setToWallet(newCurrency);
         setFromAmount(0);
         setToAmount(0);
     }
 
     const handleFromAmountChange = (newAmount: number) => {
-        setFromAmount(newAmount);
+        setFromAmount(Math.max(newAmount, 0));
         setToAmount(newAmount * exchangeRate);
     }
 
     const handleToAmountChange = (newAmount: number) => {
-        setToAmount(newAmount);
+        setToAmount(Math.max(newAmount, 0));
         setFromAmount(newAmount * exchangeRate);
     }
 
-    const toggleSell = () => {
-        setSell((prevIsSell) => !prevIsSell);
+    const toggleDirection = () => {
+        setDirection((prevDirection) => prevDirection == 'sell' ? 'buy' : 'sell');
     }
 
     return {
-        fromCurrency,
-        toCurrency,
+        fromWallet,
+        toWallet,
         fromAmount,
         toAmount,
         exchangeRate,
-        isSell,
-        handleFromCurrencyChange,
-        handleToCurrencyChange,
+        direction,
+        handleFromWalletChange,
+        handleToWalletChange,
         handleFromAmountChange,
         handleToAmountChange,
-        toggleSell
+        toggleDirection
     }
 }
 

@@ -5,33 +5,33 @@ import useExchange from "./useExchange";
 
 const Exchange = (): JSX.Element => {
     const {
-        fromCurrency,
-        toCurrency,
+        fromWallet,
+        toWallet,
         fromAmount,
         toAmount,
         exchangeRate,
-        isSell,
-        handleFromCurrencyChange,
-        handleToCurrencyChange,
+        direction,
+        handleFromWalletChange,
+        handleToWalletChange,
         handleFromAmountChange,
         handleToAmountChange,
-        toggleSell
+        toggleDirection
     } = useExchange();
 
     const handleExchangeDirectionChange = () => {
-        toggleSell();
+        toggleDirection();
     }
 
     return (
         <Container>
-            <h1 data-testid="header">{isSell ? "Sell" : "Buy"} {fromCurrency.name}</h1>
-            <p data-testid="exchangeRate">{fromCurrency.symbol}1 = {toCurrency.symbol}{exchangeRate}</p>
-            <ExchangeItem currency={fromCurrency} handleCurrencyChange={handleFromCurrencyChange}
+            <h1 data-testid="header">{direction == 'sell' ? "Sell" : "Buy"} {fromWallet.name}</h1>
+            <p data-testid="exchangeRate">{fromWallet.symbol}1 = {toWallet.symbol}{exchangeRate}</p>
+            <ExchangeItem wallet={fromWallet} handleWalletChange={handleFromWalletChange}
                 amount={fromAmount} handleAmountChange={handleFromAmountChange} />
-            <button data-testid="directionButton" onClick={handleExchangeDirectionChange}>{isSell ? "↓" : "↑"}</button>
-            <ExchangeItem currency={toCurrency} handleCurrencyChange={handleToCurrencyChange}
+            <button data-testid="directionButton" onClick={handleExchangeDirectionChange}>{direction === 'sell' ? "↓" : "↑"}</button>
+            <ExchangeItem wallet={toWallet} handleWalletChange={handleToWalletChange}
                 amount={toAmount} handleAmountChange={handleToAmountChange} />
-            <button data-testid="exchangeButton">{isSell ? "Sell" : "Buy"} {fromCurrency.name} {isSell ? "for" : "with"} {toCurrency.name}</button>
+            <button data-testid="exchangeButton">{direction === 'sell' ? "Sell" : "Buy"} {fromWallet.name} {direction === 'sell' ? "for" : "with"} {toWallet.name}</button>
         </Container>
     )
 }

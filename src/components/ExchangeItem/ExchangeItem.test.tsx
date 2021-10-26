@@ -6,14 +6,14 @@ import { WalletType } from '../Exchange/useExchange';
 
 describe('ExchangeItem', () => {
     it('matches snapshot', () => {
-        const currency: WalletType = {
+        const wallet: WalletType = {
             name: "EUR",
             balance: 10,
             longName: "Euro",
             symbol: "€"
         }
         const tree = renderer
-            .create(<ExchangeItem currency={currency} handleCurrencyChange={() => {}} amount={0} handleAmountChange={() => {}} />)
+            .create(<ExchangeItem wallet={wallet} handleWalletChange={() => {}} amount={0} handleAmountChange={() => {}} />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     })
