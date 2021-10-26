@@ -1,5 +1,5 @@
 import React from "react";
-import { WalletType } from "../Exchange/useExchange";
+import { WalletType } from "../../types";
 
 type ExchangeItemProps = {
     wallet: WalletType,

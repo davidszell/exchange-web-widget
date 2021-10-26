@@ -1,13 +1,7 @@
 import { AnyAction } from "redux";
+import { ExchangeRatesType } from "../types";
 
-export type ExchangeRatesState = {
-    base: string,
-    rates: {
-        [id: string]: number
-    }
-}
-
-const initialState: ExchangeRatesState = {
+const initialState: ExchangeRatesType = {
     base: "EUR",
     rates: {
         "EUR": 1,
@@ -17,7 +11,12 @@ const initialState: ExchangeRatesState = {
 }
 
 const exchangeRatesReducer = (state = initialState, action: AnyAction) => {
-        return state;
+    switch (action.type) {
+        case 'SET_EXCHANGE_RATES':
+            return action.payload
+        default:
+            return state;
+    }
 }
 
 export default exchangeRatesReducer;

@@ -1,19 +1,22 @@
 import React from 'react';
-import * as reduxHooks from '../../reduxHooks';
 import renderer from 'react-test-renderer';
-import {render, fireEvent, screen} from '@testing-library/react'
+import {render, fireEvent, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
 import Exchange from './Exchange';
+import * as reduxHooks from '../../reduxHooks';
 
 describe('Exchange', () => {
-    const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector');
+    const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector')
+    const useDispatchMock = jest.spyOn(reduxHooks, 'useAppDispatch')
 
     beforeEach(() => {
         useSelectorMock.mockImplementation(selector => selector(mockStore));
+        useDispatchMock.mockReturnValue(jest.fn())
     })
     afterEach(() => {
-        useSelectorMock.mockClear();
+        useSelectorMock.mockClear()
+        useDispatchMock.mockClear()
     })
 
     const mockStore = {

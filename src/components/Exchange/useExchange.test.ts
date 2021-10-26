@@ -3,13 +3,16 @@ import useExchange from './useExchange';
 import * as reduxHooks from '../../reduxHooks';
 
 describe('useExchange', () => {
-    const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector');
+    const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector')
+    const useDispatchMock = jest.spyOn(reduxHooks, 'useAppDispatch')
 
     beforeEach(() => {
         useSelectorMock.mockImplementation(selector => selector(mockStore));
+        useDispatchMock.mockReturnValue(jest.fn())
     })
     afterEach(() => {
-        useSelectorMock.mockClear();
+        useSelectorMock.mockClear()
+        useDispatchMock.mockClear()
     })
 
     const mockStore = {

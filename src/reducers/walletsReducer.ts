@@ -1,15 +1,7 @@
 import { AnyAction } from "redux";
+import { WalletType } from "../types";
 
-export type WalletType = {
-    name: string,
-    balance: number,
-    longName: string,
-    symbol: string
-}
-
-type WalletsState = WalletType[]
-
-const initialState: WalletsState = [
+const initialState: WalletType[] = [
     {
         name: "EUR",
         balance: 10,

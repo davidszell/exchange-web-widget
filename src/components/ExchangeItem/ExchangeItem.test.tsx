@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 import ExchangeItem from './ExchangeItem';
-import { WalletType } from '../Exchange/useExchange';
+import { WalletType } from '../../types';
 
 describe('ExchangeItem', () => {
     it('matches snapshot', () => {

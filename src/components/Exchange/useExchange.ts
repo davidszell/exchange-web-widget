@@ -1,19 +1,7 @@
-import { useMemo, useState } from "react"
-import { useAppSelector } from "../../reduxHooks";
-
-export type WalletType = {
-    name: string,
-    balance: number,
-    longName: string,
-    symbol: string
-}
-
-export type ExchangeRatesType = {
-    base: string,
-    rates: {
-        [id: string]: number
-    }
-}
+import { useEffect, useMemo, useState } from "react"
+import { fetchExchangeRates } from "../../actions";
+import { useAppDispatch, useAppSelector } from "../../reduxHooks";
+import { WalletType } from "../../types";
 
 export type ExchangeDirectionType = 'buy' | 'sell';
 
@@ -27,6 +15,18 @@ const useExchange = () => {
     const [fromAmount, setFromAmount] = useState<number>(0);
     const [toAmount, setToAmount] = useState<number>(0);
     const [direction, setDirection] = useState<ExchangeDirectionType>('sell');
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchExchangeRates())
+
+        const interval = setInterval(() => {
+            dispatch(fetchExchangeRates());
+        }, 10000);
+
+        return () => clearInterval(interval)
+    }, [])
 
     const exchangeRate: number = useMemo(() => {
         if (fromWallet.name == exchangeRates.base) {
