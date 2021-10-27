@@ -28,8 +28,8 @@ const useExchange = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setFromWallet(wallets[0]);
-    setToWallet(wallets[1]);
+    setFromWallet((prevFromWallet) => wallets.find((wallet) => wallet.name === prevFromWallet.name) || wallets[0]);
+    setToWallet((prevToWallet) => wallets.find((wallet) => wallet.name === prevToWallet.name) || wallets[1]);
   }, [wallets]);
 
   const exchangeRate: number = useMemo(() => {
