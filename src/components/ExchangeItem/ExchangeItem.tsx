@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { WalletType } from "../../types";
 import Modal from "../Modal";
 import WalletPicker from "../WalletPicker";
+import { Amount, Balance, Container, CurrencyButton, CurrencyContainer } from "./ExchangeItem.styled";
 
 type ExchangeItemProps = {
     wallet: WalletType,
@@ -11,7 +12,7 @@ type ExchangeItemProps = {
 
 }
 
-const ExchangeItem = ({wallet, handleWalletChange, amount, handleAmountChange}: ExchangeItemProps): JSX.Element => {
+const ExchangeItem = ({ wallet, handleWalletChange, amount, handleAmountChange }: ExchangeItemProps): JSX.Element => {
     const [showWalletPicker, setShowWalletPicker] = useState<boolean>(false);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,16 +33,18 @@ const ExchangeItem = ({wallet, handleWalletChange, amount, handleAmountChange}: 
     }
 
     return (
-        <div>
-            <button onClick={handleShowWalletPicker}>{wallet.name}</button>
-            <p>Balance: {wallet.balance}</p>
-            <input type="number" placeholder="0" value={amount} onChange={handleOnChange} ></input>
+        <Container>
+            <CurrencyContainer>
+                <CurrencyButton onClick={handleShowWalletPicker}>{wallet.name}</CurrencyButton>
+                <Amount type="number" placeholder="0" value={amount} onChange={handleOnChange} ></Amount>
+            </CurrencyContainer>
+            <Balance>Balance: {wallet.symbol}{wallet.balance}</Balance>
             {showWalletPicker ? (
                 <Modal handleClose={handleHideWalletPicker}>
                     <WalletPicker handleWalletChange={handleWalletPicked} />
                 </Modal>
             ) : ''}
-        </div>
+        </Container>
     );
 }
 

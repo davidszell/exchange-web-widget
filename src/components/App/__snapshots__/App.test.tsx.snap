@@ -1,6 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App matches snapshot 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 50px;
+  border: 2px solid #157ae2;
+  border-radius: 10px;
+  width: 500px;
+  color: #222;
+  gap: 20px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.c3 {
+  margin: 0;
+  color: #222;
+}
+
+.c4 {
+  margin: 0;
+  color: #777;
+  font-size: 0.8em;
+}
+
+.c7 {
+  border: 1px solid #157ae2;
+  color: #157ae2;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.c7:hover {
+  color: white;
+  background-color: #157ae2;
+}
+
+.c12 {
+  width: 100%;
+}
+
+.c11 {
+  border-color: #777;
+  color: #777;
+  font-size: 1.2em;
+}
+
+.c11:hover {
+  border-color: #157ae2;
+  color: #157ae2;
+  background-color: white;
+}
+
+.c5 {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.c8::after {
+  content: '⮁';
+  margin-left: 10px;
+}
+
+.c9 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c10 {
+  font-size: 0.8em;
+  margin: 0;
+  color: #777;
+}
+
 .c0 {
   width: 100%;
   height: 100%;
@@ -22,66 +133,96 @@ exports[`App matches snapshot 1`] = `
   className="c0"
 >
   <div
-    className=""
+    className="c1"
   >
-    <h1
-      data-testid="header"
+    <div
+      className="c2"
     >
-      Sell
-       
-      EUR
-    </h1>
-    <p
-      data-testid="exchangeRate"
-    >
-      €
-      1 = 
-      £
-      0.85
-    </p>
-    <div>
-      <button
-        onClick={[Function]}
+      <h1
+        className="c3"
+        data-testid="header"
       >
+        Sell
+         
         EUR
-      </button>
-      <p>
+      </h1>
+      <p
+        className="c4"
+        data-testid="exchangeRate"
+      >
+        €
+        1 = 
+        £
+        0.85
+      </p>
+    </div>
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        <button
+          className="c7 c8"
+          onClick={[Function]}
+        >
+          EUR
+        </button>
+        <input
+          className="c9"
+          onChange={[Function]}
+          placeholder="0"
+          type="number"
+          value={0}
+        />
+      </div>
+      <p
+        className="c10"
+      >
         Balance: 
+        €
         10
       </p>
-      <input
-        onChange={[Function]}
-        placeholder="0"
-        type="number"
-        value={0}
-      />
       
     </div>
     <button
+      className="c7 c11"
       data-testid="directionButton"
       onClick={[Function]}
     >
       ↓
     </button>
-    <div>
-      <button
-        onClick={[Function]}
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
       >
-        GBP
-      </button>
-      <p>
+        <button
+          className="c7 c8"
+          onClick={[Function]}
+        >
+          GBP
+        </button>
+        <input
+          className="c9"
+          onChange={[Function]}
+          placeholder="0"
+          type="number"
+          value={0}
+        />
+      </div>
+      <p
+        className="c10"
+      >
         Balance: 
+        £
         20
       </p>
-      <input
-        onChange={[Function]}
-        placeholder="0"
-        type="number"
-        value={0}
-      />
       
     </div>
     <button
+      className="c7 c12"
       data-testid="exchangeButton"
       onClick={[Function]}
     >

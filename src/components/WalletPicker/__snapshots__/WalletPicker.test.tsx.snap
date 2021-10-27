@@ -1,73 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`WalletPicker matches snapshot 1`] = `
-<div
-  className=""
+.c0 {
+  list-style: none;
+  padding: 0;
+}
+
+.c0 li {
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  color: #555;
+}
+
+.c0 li:hover {
+  color: #222;
+}
+
+<ul
+  className="c0"
 >
-  <ul>
-    <li
-      onClick={[Function]}
+  <li
+    onClick={[Function]}
+  >
+    <p
+      data-testid="name"
     >
-      <p
-        data-testid="name"
-      >
-        EUR
-      </p>
-      <p
-        data-testid="longName"
-      >
-        Euro
-      </p>
-      <p
-        data-testid="balance"
-      >
-        €
-         
-        10
-      </p>
-    </li>
-    <li
-      onClick={[Function]}
+      EUR
+    </p>
+    <p
+      data-testid="longName"
     >
-      <p
-        data-testid="name"
-      >
-        GBP
-      </p>
-      <p
-        data-testid="longName"
-      >
-        British Pounds
-      </p>
-      <p
-        data-testid="balance"
-      >
-        £
-         
-        20
-      </p>
-    </li>
-    <li
-      onClick={[Function]}
+      Euro
+    </p>
+    <p
+      data-testid="balance"
     >
-      <p
-        data-testid="name"
-      >
-        USD
-      </p>
-      <p
-        data-testid="longName"
-      >
-        US Dollars
-      </p>
-      <p
-        data-testid="balance"
-      >
-        $
-         
-        30
-      </p>
-    </li>
-  </ul>
-</div>
+      €
+       
+      10
+    </p>
+  </li>
+  <li
+    onClick={[Function]}
+  >
+    <p
+      data-testid="name"
+    >
+      GBP
+    </p>
+    <p
+      data-testid="longName"
+    >
+      British Pounds
+    </p>
+    <p
+      data-testid="balance"
+    >
+      £
+       
+      20
+    </p>
+  </li>
+  <li
+    onClick={[Function]}
+  >
+    <p
+      data-testid="name"
+    >
+      USD
+    </p>
+    <p
+      data-testid="longName"
+    >
+      US Dollars
+    </p>
+    <p
+      data-testid="balance"
+    >
+      $
+       
+      30
+    </p>
+  </li>
+</ul>
 `;

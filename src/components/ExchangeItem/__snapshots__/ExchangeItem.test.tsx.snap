@@ -1,22 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExchangeItem matches snapshot 1`] = `
-<div>
-  <button
-    onClick={[Function]}
+.c2 {
+  border: 1px solid #157ae2;
+  color: #157ae2;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.c2:hover {
+  color: white;
+  background-color: #157ae2;
+}
+
+.c0 {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.c3::after {
+  content: '⮁';
+  margin-left: 10px;
+}
+
+.c4 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c5 {
+  font-size: 0.8em;
+  margin: 0;
+  color: #777;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
   >
-    EUR
-  </button>
-  <p>
+    <button
+      className="c2 c3"
+      onClick={[Function]}
+    >
+      EUR
+    </button>
+    <input
+      className="c4"
+      onChange={[Function]}
+      placeholder="0"
+      type="number"
+      value={0}
+    />
+  </div>
+  <p
+    className="c5"
+  >
     Balance: 
+    €
     10
   </p>
-  <input
-    onChange={[Function]}
-    placeholder="0"
-    type="number"
-    value={0}
-  />
   
 </div>
 `;
