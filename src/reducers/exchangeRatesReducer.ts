@@ -2,12 +2,8 @@ import { AnyAction } from 'redux';
 import { ExchangeRatesType } from '../types';
 
 const initialState: ExchangeRatesType = {
-  base: 'EUR',
-  rates: {
-    EUR: 1,
-    GBP: 0.85,
-    USD: 1.16,
-  },
+  base: '',
+  rates: {},
 };
 
 const exchangeRatesReducer = (state = initialState, action: AnyAction) => {

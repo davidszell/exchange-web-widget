@@ -25,6 +25,11 @@ const Exchange = (): JSX.Element => {
     toggleDirection();
   };
 
+  if (Number.isNaN(exchangeRate)) {
+    return (
+      <p>Loading...</p>
+    );
+  }
   return (
     <Container>
       <Heading>
