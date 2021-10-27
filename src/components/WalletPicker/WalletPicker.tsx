@@ -1,5 +1,6 @@
 import React from "react"
 import { useAppSelector } from "../../reduxHooks";
+import { WalletType } from "../../types";
 import { Container } from "./WalletPicker.styled";
 
 type WalletPickerProps = {
@@ -7,7 +8,7 @@ type WalletPickerProps = {
 }
 
 const WalletPicker = ({ handleWalletChange }: WalletPickerProps): JSX.Element => {
-    const wallets = useAppSelector(state => state.wallets)
+    const wallets: WalletType[] = useAppSelector(state => state.wallets)
 
     return (
         <Container>

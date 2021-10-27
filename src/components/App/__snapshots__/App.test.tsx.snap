@@ -83,6 +83,7 @@ exports[`App matches snapshot 1`] = `
     </div>
     <button
       data-testid="exchangeButton"
+      onClick={[Function]}
     >
       Sell
        

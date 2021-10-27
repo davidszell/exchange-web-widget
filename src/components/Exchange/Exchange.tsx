@@ -15,6 +15,7 @@ const Exchange = (): JSX.Element => {
         handleToWalletChange,
         handleFromAmountChange,
         handleToAmountChange,
+        handleExchange,
         toggleDirection
     } = useExchange();
 
@@ -31,7 +32,7 @@ const Exchange = (): JSX.Element => {
             <button data-testid="directionButton" onClick={handleExchangeDirectionChange}>{direction === 'sell' ? "↓" : "↑"}</button>
             <ExchangeItem wallet={toWallet} handleWalletChange={handleToWalletChange}
                 amount={toAmount} handleAmountChange={handleToAmountChange} />
-            <button data-testid="exchangeButton">{direction === 'sell' ? "Sell" : "Buy"} {fromWallet.name} {direction === 'sell' ? "for" : "with"} {toWallet.name}</button>
+            <button data-testid="exchangeButton" onClick={handleExchange}>{direction === 'sell' ? "Sell" : "Buy"} {fromWallet.name} {direction === 'sell' ? "for" : "with"} {toWallet.name}</button>
         </Container>
     )
 }

@@ -22,8 +22,13 @@ const initialState: WalletType[] = [
     }
 ]
 
-const walletsReducer = (state = initialState, action: AnyAction) => {
-        return state;
+const walletsReducer = (state = initialState, action: AnyAction): WalletType[] => {
+    switch (action.type) {
+        case 'SET_WALLETS':
+            return action.payload
+        default:
+            return state;
+    }
 }
 
 export default walletsReducer;
