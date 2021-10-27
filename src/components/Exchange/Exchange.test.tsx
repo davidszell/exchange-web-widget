@@ -24,7 +24,7 @@ describe('Exchange', () => {
       {
         name: "EUR",
         balance: 10,
-        longName: "Euro",
+        longName: "Euros",
         symbol: "€"
       },
       {

@@ -9,7 +9,7 @@ describe('ExchangeItem', () => {
         const wallet: WalletType = {
             name: "EUR",
             balance: 10,
-            longName: "Euro",
+            longName: "Euros",
             symbol: "€"
         }
         const tree = renderer
