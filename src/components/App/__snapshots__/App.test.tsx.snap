@@ -151,7 +151,8 @@ exports[`App matches snapshot 1`] = `
         data-testid="exchangeRate"
       >
         €
-        1 = 
+        1 =
+         
         £
         0.85
       </p>
@@ -179,7 +180,7 @@ exports[`App matches snapshot 1`] = `
       <p
         className="c10"
       >
-        Balance: 
+        Balance:
         €
         10
       </p>
@@ -215,7 +216,7 @@ exports[`App matches snapshot 1`] = `
       <p
         className="c10"
       >
-        Balance: 
+        Balance:
         £
         20
       </p>

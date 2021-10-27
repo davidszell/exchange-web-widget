@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Button } from "../Exchange/Exchange.styled";
+import styled from 'styled-components';
+import { Button } from '../Exchange/Exchange.styled';
 
 export const Container = styled.div`
     padding: 10px;

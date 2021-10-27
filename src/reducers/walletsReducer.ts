@@ -1,34 +1,34 @@
-import { AnyAction } from "redux";
-import { WalletType } from "../types";
+import { AnyAction } from 'redux';
+import { WalletType } from '../types';
 
 const initialState: WalletType[] = [
-    {
-        name: "EUR",
-        balance: 10,
-        longName: "Euro",
-        symbol: "€"
-    },
-    {
-        name: "GBP",
-        balance: 20,
-        longName: "British Pounds",
-        symbol: "£"
-    },
-    {
-        name: "USD",
-        balance: 30,
-        longName: "US Dollars",
-        symbol: "$"
-    }
-]
+  {
+    name: 'EUR',
+    balance: 10,
+    longName: 'Euro',
+    symbol: '€',
+  },
+  {
+    name: 'GBP',
+    balance: 20,
+    longName: 'British Pounds',
+    symbol: '£',
+  },
+  {
+    name: 'USD',
+    balance: 30,
+    longName: 'US Dollars',
+    symbol: '$',
+  },
+];
 
 const walletsReducer = (state = initialState, action: AnyAction): WalletType[] => {
-    switch (action.type) {
-        case 'SET_WALLETS':
-            return action.payload
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case 'SET_WALLETS':
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 export default walletsReducer;

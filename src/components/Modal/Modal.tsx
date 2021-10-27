@@ -1,24 +1,24 @@
-import React, { MouseEventHandler } from "react";
-import { CloseButton, Container, Content } from "./Modal.styled";
+import React from 'react';
+import { CloseButton, Container, Content } from './Modal.styled';
 
 type ModalPropsType = {
-    children: React.ReactNode,
-    handleClose: Function
-}
+  children: React.ReactNode,
+  handleClose: () => void
+};
 
 const Modal = ({ children, handleClose }: ModalPropsType): JSX.Element => {
-    const handleCloseClick = (event: React.MouseEvent) => {
-        handleClose();
-    }
+  const handleCloseClick = () => {
+    handleClose();
+  };
 
-    return (
-        <Container>
-            <Content>
-                <CloseButton onClick={handleCloseClick}>X</CloseButton>
-                { children }
-            </Content>
-        </Container>
-    )
-}
+  return (
+    <Container>
+      <Content>
+        <CloseButton onClick={handleCloseClick}>X</CloseButton>
+        { children }
+      </Content>
+    </Container>
+  );
+};
 
 export default Modal;

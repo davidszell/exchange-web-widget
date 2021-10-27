@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.main`
     width: 100%;
@@ -6,4 +6,4 @@ export const Container = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;

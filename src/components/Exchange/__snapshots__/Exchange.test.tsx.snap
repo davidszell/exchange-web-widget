@@ -131,7 +131,8 @@ exports[`Exchange matches snapshot 1`] = `
       data-testid="exchangeRate"
     >
       €
-      1 = 
+      1 =
+       
       £
       0.85
     </p>
@@ -159,7 +160,7 @@ exports[`Exchange matches snapshot 1`] = `
     <p
       className="c9"
     >
-      Balance: 
+      Balance:
       €
       10
     </p>
@@ -195,7 +196,7 @@ exports[`Exchange matches snapshot 1`] = `
     <p
       className="c9"
     >
-      Balance: 
+      Balance:
       £
       20
     </p>

@@ -81,7 +81,7 @@ exports[`ExchangeItem matches snapshot 1`] = `
   <p
     className="c5"
   >
-    Balance: 
+    Balance:
     €
     10
   </p>
