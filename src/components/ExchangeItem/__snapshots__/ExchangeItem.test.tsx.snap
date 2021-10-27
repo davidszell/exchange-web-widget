@@ -17,5 +17,6 @@ exports[`ExchangeItem matches snapshot 1`] = `
     type="number"
     value={0}
   />
+  
 </div>
 `;

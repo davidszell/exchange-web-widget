@@ -35,6 +35,7 @@ exports[`Exchange matches snapshot 1`] = `
       type="number"
       value={0}
     />
+    
   </div>
   <button
     data-testid="directionButton"
@@ -58,6 +59,7 @@ exports[`Exchange matches snapshot 1`] = `
       type="number"
       value={0}
     />
+    
   </div>
   <button
     data-testid="exchangeButton"
