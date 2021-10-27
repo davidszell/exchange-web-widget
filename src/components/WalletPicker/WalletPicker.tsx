@@ -1,7 +1,9 @@
 import React from 'react';
 import { useAppSelector } from '../../reduxHooks';
 import { WalletType } from '../../types';
-import { Container } from './WalletPicker.styled';
+import {
+  Balance, Container, InfoContainer, LongName, Name, WalletInfo,
+} from './WalletPicker.styled';
 
 type WalletPickerProps = {
   handleWalletChange: (newWallet: string) => void
@@ -13,15 +15,17 @@ const WalletPicker = ({ handleWalletChange }: WalletPickerProps): JSX.Element =>
   return (
     <Container>
       {wallets.map((item) => (
-        <li key={item.name} onClick={() => handleWalletChange(item.name)}>
-          <p data-testid="name">{item.name}</p>
-          <p data-testid="longName">{item.longName}</p>
-          <p data-testid="balance">
-            {item.symbol}
-            {' '}
-            {item.balance}
-          </p>
-        </li>
+        <WalletInfo key={item.name} onClick={() => handleWalletChange(item.name)}>
+          <Name data-testid="name">{item.name}</Name>
+          <InfoContainer>
+            <LongName data-testid="longName">{item.longName}</LongName>
+            <Balance data-testid="balance">
+              {item.symbol}
+              {' '}
+              {item.balance}
+            </Balance>
+          </InfoContainer>
+        </WalletInfo>
       ))}
     </Container>
   );

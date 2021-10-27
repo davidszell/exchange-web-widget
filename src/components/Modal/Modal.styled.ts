@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '../Exchange/Exchange.styled';
 
 export const Container = styled.div`
     position: fixed;
@@ -19,22 +20,11 @@ export const Content = styled.div`
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
 `;
 
-export const CloseButton = styled.button`
-    width: 2em;
-    height: 2em;
-    border: 2px solid #777;
-    color: #777;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1em;
-    float: right;
-
-    &:hover {
-        border-color: #55F;
-        color: #55F;
-    }
+export const CloseButton = styled(Button)`
+    position: absolute;
+    right: 10px;
+    top: 10px;
 `;

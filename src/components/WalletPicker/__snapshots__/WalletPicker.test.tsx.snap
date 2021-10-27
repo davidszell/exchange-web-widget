@@ -6,81 +6,151 @@ exports[`WalletPicker matches snapshot 1`] = `
   padding: 0;
 }
 
-.c0 li {
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 40px;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
-  color: #555;
+  color: #222;
+  padding: 10px 40px;
 }
 
-.c0 li:hover {
-  color: #222;
+.c1:hover {
+  color: #157ae2;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 500px;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 5px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c4 {
+  margin: 0;
+}
+
+.c5 {
+  margin: 0;
+  font-size: 0.8em;
 }
 
 <ul
   className="c0"
 >
   <li
+    className="c1"
     onClick={[Function]}
   >
     <p
+      className="c2"
       data-testid="name"
     >
       EUR
     </p>
-    <p
-      data-testid="longName"
+    <div
+      className="c3"
     >
-      Euro
-    </p>
-    <p
-      data-testid="balance"
-    >
-      €
-       
-      10
-    </p>
+      <p
+        className="c4"
+        data-testid="longName"
+      >
+        Euros
+      </p>
+      <p
+        className="c5"
+        data-testid="balance"
+      >
+        €
+         
+        10
+      </p>
+    </div>
   </li>
   <li
+    className="c1"
     onClick={[Function]}
   >
     <p
+      className="c2"
       data-testid="name"
     >
       GBP
     </p>
-    <p
-      data-testid="longName"
+    <div
+      className="c3"
     >
-      British Pounds
-    </p>
-    <p
-      data-testid="balance"
-    >
-      £
-       
-      20
-    </p>
+      <p
+        className="c4"
+        data-testid="longName"
+      >
+        British Pounds
+      </p>
+      <p
+        className="c5"
+        data-testid="balance"
+      >
+        £
+         
+        20
+      </p>
+    </div>
   </li>
   <li
+    className="c1"
     onClick={[Function]}
   >
     <p
+      className="c2"
       data-testid="name"
     >
       USD
     </p>
-    <p
-      data-testid="longName"
+    <div
+      className="c3"
     >
-      US Dollars
-    </p>
-    <p
-      data-testid="balance"
-    >
-      $
-       
-      30
-    </p>
+      <p
+        className="c4"
+        data-testid="longName"
+      >
+        US Dollars
+      </p>
+      <p
+        className="c5"
+        data-testid="balance"
+      >
+        $
+         
+        30
+      </p>
+    </div>
   </li>
 </ul>
 `;

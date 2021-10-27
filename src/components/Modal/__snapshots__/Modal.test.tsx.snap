@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Modal matches snapshot 1`] = `
+.c2 {
+  border: 1px solid #157ae2;
+  color: #157ae2;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.c2:hover {
+  color: white;
+  background-color: #157ae2;
+}
+
 .c0 {
   position: fixed;
   left: 0;
@@ -29,24 +44,13 @@ exports[`Modal matches snapshot 1`] = `
   background-color: white;
   padding: 10px;
   border-radius: 10px;
+  position: relative;
 }
 
-.c2 {
-  width: 2em;
-  height: 2em;
-  border: 2px solid #777;
-  color: #777;
-  background-color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 1em;
-  float: right;
-}
-
-.c2:hover {
-  border-color: #55F;
-  color: #55F;
+.c3 {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 <div
@@ -56,7 +60,7 @@ exports[`Modal matches snapshot 1`] = `
     className="c1"
   >
     <button
-      className="c2"
+      className="c2 c3"
       onClick={[Function]}
     >
       X
