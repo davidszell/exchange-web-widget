@@ -1,6 +1,6 @@
 import React from "react";
 import ExchangeItem from "../ExchangeItem";
-import { Container } from "./Exchange.styled";
+import { Container, DirectionButton, ExchangeButton, Header, Heading, SubHeader } from "./Exchange.styled";
 import useExchange from "./useExchange";
 
 const Exchange = (): JSX.Element => {
@@ -25,14 +25,16 @@ const Exchange = (): JSX.Element => {
 
     return (
         <Container>
-            <h1 data-testid="header">{direction == 'sell' ? "Sell" : "Buy"} {fromWallet.name}</h1>
-            <p data-testid="exchangeRate">{fromWallet.symbol}1 = {toWallet.symbol}{exchangeRate}</p>
+            <Heading>
+                <Header data-testid="header">{direction == 'sell' ? "Sell" : "Buy"} {fromWallet.name}</Header>
+                <SubHeader data-testid="exchangeRate">{fromWallet.symbol}1 = {toWallet.symbol}{exchangeRate}</SubHeader>
+            </Heading>
             <ExchangeItem wallet={fromWallet} handleWalletChange={handleFromWalletChange}
                 amount={fromAmount} handleAmountChange={handleFromAmountChange} />
-            <button data-testid="directionButton" onClick={handleExchangeDirectionChange}>{direction === 'sell' ? "↓" : "↑"}</button>
+            <DirectionButton data-testid="directionButton" onClick={handleExchangeDirectionChange}>{direction === 'sell' ? "↓" : "↑"}</DirectionButton>
             <ExchangeItem wallet={toWallet} handleWalletChange={handleToWalletChange}
                 amount={toAmount} handleAmountChange={handleToAmountChange} />
-            <button data-testid="exchangeButton" onClick={handleExchange}>{direction === 'sell' ? "Sell" : "Buy"} {fromWallet.name} {direction === 'sell' ? "for" : "with"} {toWallet.name}</button>
+            <ExchangeButton data-testid="exchangeButton" onClick={handleExchange}>{direction === 'sell' ? "Sell" : "Buy"} {fromWallet.name} {direction === 'sell' ? "for" : "with"} {toWallet.name}</ExchangeButton>
         </Container>
     )
 }

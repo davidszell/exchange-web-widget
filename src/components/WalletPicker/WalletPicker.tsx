@@ -12,15 +12,13 @@ const WalletPicker = ({ handleWalletChange }: WalletPickerProps): JSX.Element =>
 
     return (
         <Container>
-            <ul>
-                {wallets.map(item => (
-                    <li key={item.name} onClick={() => handleWalletChange(item.name)}>
-                        <p data-testid="name">{item.name}</p>
-                        <p data-testid="longName">{item.longName}</p>
-                        <p data-testid="balance">{item.symbol} {item.balance}</p>
-                    </li>
-                ))}
-            </ul>
+            {wallets.map(item => (
+                <li key={item.name} onClick={() => handleWalletChange(item.name)}>
+                    <p data-testid="name">{item.name}</p>
+                    <p data-testid="longName">{item.longName}</p>
+                    <p data-testid="balance">{item.symbol} {item.balance}</p>
+                </li>
+            ))}
         </Container>
     )
 }

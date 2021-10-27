@@ -14,7 +14,7 @@ const Modal = ({ children, handleClose }: ModalPropsType): JSX.Element => {
     return (
         <Container>
             <Content>
-                <CloseButton onClick={handleCloseClick}>Close</CloseButton>
+                <CloseButton onClick={handleCloseClick}>X</CloseButton>
                 { children }
             </Content>
         </Container>
