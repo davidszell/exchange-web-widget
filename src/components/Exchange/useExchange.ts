@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useState } from "react"
-import { fetchExchangeRates } from "../../actions";
+import { doExchange, fetchExchangeRates } from "../../actions";
 import { useAppDispatch, useAppSelector } from "../../reduxHooks";
-import { WalletType } from "../../types";
+import { ExchangeRatesType, WalletType } from "../../types";
 
 export type ExchangeDirectionType = 'buy' | 'sell';
 
 const useExchange = () => {
 
-    const wallets = useAppSelector(state => state.wallets);
-    const exchangeRates = useAppSelector(state => state.exchangeRates);
+    const wallets: WalletType[] = useAppSelector(state => state.wallets);
+    const exchangeRates: ExchangeRatesType = useAppSelector(state => state.exchangeRates);
 
     const [fromWallet, setFromWallet] = useState<WalletType>(wallets[0]);
     const [toWallet, setToWallet] = useState<WalletType>(wallets[1]);
@@ -27,6 +27,11 @@ const useExchange = () => {
 
         return () => clearInterval(interval)
     }, [])
+
+    useEffect(() => {
+        setFromWallet(wallets[0]);
+        setToWallet(wallets[1]);
+    }, [wallets])
 
     const exchangeRate: number = useMemo(() => {
         if (fromWallet.name == exchangeRates.base) {
@@ -105,6 +110,12 @@ const useExchange = () => {
         setDirection((prevDirection) => prevDirection == 'sell' ? 'buy' : 'sell');
     }
 
+    const handleExchange = () => {
+        dispatch(doExchange(fromWallet.name, toWallet.name, direction, fromAmount, toAmount));
+        setFromAmount(0);
+        setToAmount(0);
+    }
+
     return {
         fromWallet,
         toWallet,
@@ -116,6 +127,7 @@ const useExchange = () => {
         handleToWalletChange,
         handleFromAmountChange,
         handleToAmountChange,
+        handleExchange,
         toggleDirection
     }
 }
