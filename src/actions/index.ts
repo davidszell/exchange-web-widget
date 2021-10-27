@@ -14,14 +14,12 @@ export const setExchangeRates = (exchangeRates: ExchangeRatesType) => {
 export const fetchExchangeRates = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
     return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
         return new Promise<void>((resolve) => {
-            setTimeout(() => {
-                fetch(`https://openexchangerates.org/api/latest.json?app_id=${process.env.API_KEY}`)
+            fetch(`https://openexchangerates.org/api/latest.json?app_id=${process.env.API_KEY}`)
                 .then(response => response.json())
                 .then(json => {
                     dispatch(setExchangeRates(json))
                 })
                 .finally(resolve)
-            }, 1000)
         })
     }
 }
