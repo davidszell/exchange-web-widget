@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExchangeItem matches snapshot 1`] = `
+.c4 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border: none;
+  text-align: right;
+  font-size: 1.3em;
+  padding: 10px;
+  border-radius: 5px;
+  -moz-appearance: textfield;
+}
+
+.c4::-webkit-outer-spin-button,
+.c4::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .c2 {
   border: 1px solid #157ae2;
   color: #157ae2;
@@ -14,6 +32,16 @@ exports[`ExchangeItem matches snapshot 1`] = `
 .c2:hover {
   color: white;
   background-color: #157ae2;
+}
+
+.c2:disabled,
+.c2[disabled],
+.c2:disabled:hover,
+.c2[disabled]:hover {
+  cursor: unset;
+  color: #777;
+  border-color: #777;
+  background-color: white;
 }
 
 .c0 {
@@ -46,12 +74,6 @@ exports[`ExchangeItem matches snapshot 1`] = `
   margin-left: 10px;
 }
 
-.c4 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
 .c5 {
   font-size: 0.8em;
   margin: 0;
@@ -74,8 +96,9 @@ exports[`ExchangeItem matches snapshot 1`] = `
       className="c4"
       onChange={[Function]}
       placeholder="0"
+      step="0.01"
       type="number"
-      value={0}
+      value=""
     />
   </div>
   <p

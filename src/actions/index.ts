@@ -23,10 +23,13 @@ export const fetchExchangeRates = (): ThunkAction<Promise<void>, RootState, void
   dispatch: ThunkDispatch<RootState, void, AnyAction>,
 ): Promise<void> => new Promise<void>((resolve) => {
   fetch(`https://openexchangerates.org/api/latest.json?app_id=${process.env.API_KEY}`)
-    .then((response) => response.json())
-    .then((json) => {
-      dispatch(setExchangeRates(json));
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error('Failed to fetch exchange rates');
+      }
+      return response.json();
     })
+    .then((json) => dispatch(setExchangeRates(json)))
     .finally(resolve);
 });
 
@@ -34,8 +37,8 @@ export const doExchange = (
   fromCurrency: string,
   toCurrency: string,
   direction: 'buy' | 'sell',
-  fromAmount: number,
-  toAmount: number,
+  fromAmount: number | null,
+  toAmount: number | null,
 ): ThunkAction<Promise<void>, RootState, void, AnyAction> => async (
   dispatch: ThunkDispatch<RootState, void, AnyAction>,
   getState: () => RootState,
@@ -48,9 +51,9 @@ export const doExchange = (
     if (wallet.name === fromCurrency) {
       let newBalance;
       if (direction === 'buy') {
-        newBalance = wallet.balance + fromAmount;
+        newBalance = wallet.balance + (fromAmount || 0);
       } else {
-        newBalance = wallet.balance - fromAmount;
+        newBalance = wallet.balance - (fromAmount || 0);
       }
       newState.push({
         ...wallet,
@@ -59,9 +62,9 @@ export const doExchange = (
     } else if (wallet.name === toCurrency) {
       let newBalance;
       if (direction === 'buy') {
-        newBalance = wallet.balance - toAmount;
+        newBalance = wallet.balance - (toAmount || 0);
       } else {
-        newBalance = wallet.balance + toAmount;
+        newBalance = wallet.balance + (toAmount || 0);
       }
       newState.push({
         ...wallet,

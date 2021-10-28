@@ -46,14 +46,14 @@ describe('useExchange', () => {
     }
   };
 
-  it("returns 0 as default fromAmount", () => {
+  it("returns null as default fromAmount", () => {
     const { result } = renderHook(useExchange)
-    expect(result.current.fromAmount).toBe(0)
+    expect(result.current.fromAmount).toBeNull()
   });
 
-  it("returns 0 as default toAmount", () => {
+  it("returns null as default toAmount", () => {
     const { result } = renderHook(useExchange)
-    expect(result.current.toAmount).toBe(0)
+    expect(result.current.toAmount).toBeNull()
   });
 
   it("returns 'sell' as default exchange direction", () => {
@@ -92,7 +92,7 @@ describe('useExchange', () => {
     act(() => {
       result.current.handleFromAmountChange(-1)
     })
-    expect(result.current.fromAmount).toBe(0)
+    expect(result.current.fromAmount).toBeNull()
   })
 
   it("doesn't allow negative toAmount", () => {
@@ -100,7 +100,7 @@ describe('useExchange', () => {
     act(() => {
       result.current.handleToAmountChange(-1)
     })
-    expect(result.current.toAmount).toBe(0)
+    expect(result.current.toAmount).toBeNull()
   })
 
   it("updates the direction", () => {
@@ -215,7 +215,7 @@ describe('useExchange', () => {
     act(() => {
       result.current.handleFromAmountChange(-1)
     })
-    expect(result.current.toAmount).toBe(0)
+    expect(result.current.toAmount).toBeNull()
   })
 
   it("updates fromAmount correctly when trying to set toAmount to a negative number", () => {
@@ -224,6 +224,6 @@ describe('useExchange', () => {
     act(() => {
       result.current.handleToAmountChange(-1)
     })
-    expect(result.current.fromAmount).toBe(0)
+    expect(result.current.fromAmount).toBeNull()
   })
 });

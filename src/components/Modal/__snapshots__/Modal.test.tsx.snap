@@ -16,6 +16,16 @@ exports[`Modal matches snapshot 1`] = `
   background-color: #157ae2;
 }
 
+.c2:disabled,
+.c2[disabled],
+.c2:disabled:hover,
+.c2[disabled]:hover {
+  cursor: unset;
+  color: #777;
+  border-color: #777;
+  background-color: white;
+}
+
 .c0 {
   position: fixed;
   left: 0;

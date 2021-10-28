@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Exchange matches snapshot 1`] = `
+.c8 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border: none;
+  text-align: right;
+  font-size: 1.3em;
+  padding: 10px;
+  border-radius: 5px;
+  -moz-appearance: textfield;
+}
+
+.c8::-webkit-outer-spin-button,
+.c8::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -54,6 +72,16 @@ exports[`Exchange matches snapshot 1`] = `
   background-color: #157ae2;
 }
 
+.c6:disabled,
+.c6[disabled],
+.c6:disabled:hover,
+.c6[disabled]:hover {
+  cursor: unset;
+  color: #777;
+  border-color: #777;
+  background-color: white;
+}
+
 .c11 {
   width: 100%;
 }
@@ -98,12 +126,6 @@ exports[`Exchange matches snapshot 1`] = `
 .c7::after {
   content: '⮁';
   margin-left: 10px;
-}
-
-.c8 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
 }
 
 .c9 {
@@ -153,8 +175,9 @@ exports[`Exchange matches snapshot 1`] = `
         className="c8"
         onChange={[Function]}
         placeholder="0"
+        step="0.01"
         type="number"
-        value={0}
+        value=""
       />
     </div>
     <p
@@ -189,8 +212,9 @@ exports[`Exchange matches snapshot 1`] = `
         className="c8"
         onChange={[Function]}
         placeholder="0"
+        step="0.01"
         type="number"
-        value={0}
+        value=""
       />
     </div>
     <p
@@ -205,6 +229,7 @@ exports[`Exchange matches snapshot 1`] = `
   <button
     className="c6 c11"
     data-testid="exchangeButton"
+    disabled={true}
     onClick={[Function]}
   >
     Sell

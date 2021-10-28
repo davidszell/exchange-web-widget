@@ -23,10 +23,6 @@ export const CurrencyButton = styled(Button)`
     }
 `;
 
-export const Amount = styled.input`
-    flex: 1;
-`;
-
 export const Balance = styled.p`
     font-size: 0.8em;
     margin: 0;

@@ -40,6 +40,15 @@ export const Button = styled.button`
     color: white;
     background-color: #157ae2;
   }
+  &:disabled,
+  &[disabled],
+  &:disabled:hover,
+  &[disabled]:hover {
+    cursor: unset;
+    color: #777;
+    border-color: #777;
+    background-color: white;
+  }
 `;
 
 export const ExchangeButton = styled(Button)`

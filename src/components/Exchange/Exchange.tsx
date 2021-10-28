@@ -13,6 +13,7 @@ const Exchange = (): JSX.Element => {
     toAmount,
     exchangeRate,
     direction,
+    disableExchange,
     handleFromWalletChange,
     handleToWalletChange,
     handleFromAmountChange,
@@ -59,7 +60,7 @@ const Exchange = (): JSX.Element => {
         amount={toAmount}
         handleAmountChange={handleToAmountChange}
       />
-      <ExchangeButton data-testid="exchangeButton" onClick={handleExchange}>
+      <ExchangeButton data-testid="exchangeButton" onClick={handleExchange} disabled={disableExchange}>
         {direction === 'sell' ? 'Sell' : 'Buy'}
         {' '}
         {fromWallet.name}

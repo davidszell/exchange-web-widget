@@ -11,9 +11,10 @@ const useExchange = () => {
 
   const [fromWallet, setFromWallet] = useState<WalletType>(wallets[0]);
   const [toWallet, setToWallet] = useState<WalletType>(wallets[1]);
-  const [fromAmount, setFromAmount] = useState<number>(0);
-  const [toAmount, setToAmount] = useState<number>(0);
+  const [fromAmount, setFromAmount] = useState<number | null>(null);
+  const [toAmount, setToAmount] = useState<number | null>(null);
   const [direction, setDirection] = useState<ExchangeDirectionType>('sell');
+  const [disableExchange, setDisableExchange] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
 
@@ -32,6 +33,17 @@ const useExchange = () => {
     setToWallet((prevToWallet) => wallets.find((wallet) => wallet.name === prevToWallet.name) || wallets[1]);
   }, [wallets]);
 
+  useEffect(() => {
+    setDisableExchange(toAmount === null
+      || fromAmount === null
+      || fromAmount === 0
+      || toAmount === 0
+      || (direction === 'sell' && fromAmount > fromWallet.balance)
+      || (direction === 'buy' && toAmount > toWallet.balance));
+  }, [direction, fromAmount, fromWallet.balance, toAmount, toWallet.balance]);
+
+  const roundRates = (value: number) => Number(`${Math.round(Number(`${value}e2`))}e-2`);
+
   const exchangeRate: number = useMemo(() => {
     if (fromWallet.name === exchangeRates.base) {
       return exchangeRates.rates[toWallet.name];
@@ -39,7 +51,7 @@ const useExchange = () => {
     const fromRate = exchangeRates.rates[fromWallet.name];
     const toRate = exchangeRates.rates[toWallet.name];
 
-    return (toRate / fromRate);
+    return toRate / fromRate;
   }, [fromWallet, toWallet, exchangeRates]);
 
   const handleFromWalletChange = (walletName: string) => {
@@ -82,23 +94,23 @@ const useExchange = () => {
     setToAmount(0);
   };
 
-  const handleFromAmountChange = (newAmount: number) => {
-    if (newAmount > 0) {
+  const handleFromAmountChange = (newAmount: number | null) => {
+    if (newAmount !== null && newAmount > 0) {
       setFromAmount(newAmount);
-      setToAmount(newAmount * exchangeRate);
+      setToAmount(roundRates(newAmount * exchangeRate));
     } else {
-      setToAmount(0);
-      setFromAmount(0);
+      setToAmount(null);
+      setFromAmount(null);
     }
   };
 
   const handleToAmountChange = (newAmount: number) => {
-    if (newAmount > 0) {
+    if (newAmount !== null && newAmount > 0) {
       setToAmount(newAmount);
-      setFromAmount(newAmount / exchangeRate);
+      setFromAmount(roundRates(newAmount / exchangeRate));
     } else {
-      setToAmount(0);
-      setFromAmount(0);
+      setToAmount(null);
+      setFromAmount(null);
     }
   };
 
@@ -119,6 +131,7 @@ const useExchange = () => {
     toAmount,
     exchangeRate,
     direction,
+    disableExchange,
     handleFromWalletChange,
     handleToWalletChange,
     handleFromAmountChange,
