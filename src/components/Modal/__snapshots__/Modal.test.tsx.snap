@@ -65,6 +65,7 @@ exports[`Modal matches snapshot 1`] = `
 
 <div
   className="c0"
+  data-testid="modal"
 >
   <div
     className="c1"

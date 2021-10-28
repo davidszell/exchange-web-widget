@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { ExchangeRatesType } from '../types';
 
-const initialState: ExchangeRatesType = {
+export const initialState: ExchangeRatesType = {
   base: '',
   rates: {},
 };

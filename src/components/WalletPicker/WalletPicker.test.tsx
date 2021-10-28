@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
 import WalletPicker from './WalletPicker';
-import * as reduxHooks from '../../reduxHooks';
+import * as reduxHooks from '../../hooks/reduxHooks';
 
 describe('WalletPicker', () => {
     const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector')

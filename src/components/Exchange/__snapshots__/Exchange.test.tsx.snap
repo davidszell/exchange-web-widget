@@ -173,6 +173,7 @@ exports[`Exchange matches snapshot 1`] = `
       </button>
       <input
         className="c8"
+        data-testid="amount"
         onChange={[Function]}
         placeholder="0"
         step="0.01"
@@ -210,6 +211,7 @@ exports[`Exchange matches snapshot 1`] = `
       </button>
       <input
         className="c8"
+        data-testid="amount"
         onChange={[Function]}
         placeholder="0"
         step="0.01"

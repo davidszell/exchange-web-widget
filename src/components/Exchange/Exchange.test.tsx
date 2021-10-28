@@ -4,9 +4,22 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
 import Exchange from './Exchange';
-import * as reduxHooks from '../../reduxHooks';
+import * as reduxHooks from '../../hooks/reduxHooks';
+import * as useExchange from '../../hooks/useExchange';
+
+jest.mock('../../hooks/useExchange', () => {
+  const original = jest.requireActual('../../hooks/useExchange')
+  return {
+    __esModule: true,
+    default: jest.fn(() => ({
+      ...original.default(),
+      exchangeRate: 0.85
+    }))
+  }
+});
 
 describe('Exchange', () => {
+
   const useSelectorMock = jest.spyOn(reduxHooks, 'useAppSelector')
   const useDispatchMock = jest.spyOn(reduxHooks, 'useAppDispatch')
 
@@ -62,18 +75,18 @@ describe('Exchange', () => {
     expect(screen.getByTestId('header')).toHaveTextContent(/^Sell [A-Z]{3}$/);
   });
 
-  it('Shows correct header after direction change', () => {
+  it('Shows correct header after exchange action change', () => {
     render(<Exchange />);
     fireEvent.click(screen.getByTestId('directionButton'));
     expect(screen.getByTestId('header')).toHaveTextContent(/^Buy [A-Z]{3}$/);
   });
 
-  it('Shows correct direction button label', () => {
+  it('Shows correct button label', () => {
     render(<Exchange />);
     expect(screen.getByTestId('directionButton')).toHaveTextContent(/^↓$/);
   });
 
-  it('Shows correct direction button after direction change', () => {
+  it('Shows correct button after exchange action change', () => {
     render(<Exchange />);
     fireEvent.click(screen.getByTestId('directionButton'));
     expect(screen.getByTestId('directionButton')).toHaveTextContent(/^↑$/);
@@ -84,9 +97,17 @@ describe('Exchange', () => {
     expect(screen.getByTestId('exchangeButton')).toHaveTextContent(/^Sell [A-Z]{3} for [A-Z]{3}$/);
   });
 
-  it('Shows correct exchange button label after direction change', () => {
+  it('Shows correct exchange button label after exchange action change', () => {
     render(<Exchange />);
     fireEvent.click(screen.getByTestId('directionButton'));
     expect(screen.getByTestId('exchangeButton')).toHaveTextContent(/^Buy [A-Z]{3} with [A-Z]{3}$/);
   });
+
+  it('Shows loading screen when echangeRate is null', () => {
+    (useExchange.default as jest.Mock).mockImplementation(() => ({
+      exchangeRate: null
+    }))
+    render(<Exchange />);
+    expect(screen.queryByText('Loading...')).not.toBeNull();
+  })
 })

@@ -1,17 +1,21 @@
 import { fetchExchangeRates } from "../actions"
 import { WalletType } from "../types"
-import walletsReducer from "./walletsReducer"
+import walletsReducer, { initialState } from "./walletsReducer"
 
 describe('walletsReducer', () => {
     it('returns state by default', () => {
-        const initialState: WalletType[] = []
+        const state: WalletType[] = []
 
-        const newState = walletsReducer(initialState, {type: 'foo'})
+        const newState = walletsReducer(state, {type: 'foo'})
+        expect(newState).toEqual(state)
+    })
+
+    it('uses initial state', () => {
+        const newState = walletsReducer(undefined, {type: 'foo'})
         expect(newState).toEqual(initialState)
     })
 
     it('handles SET_WALLETS correctly', () => {
-        const initialState: WalletType[] = []
         const payload = [
             {
                 name: "EUR",
@@ -21,7 +25,7 @@ describe('walletsReducer', () => {
             }
         ]
 
-        const newState = walletsReducer(initialState, {type: 'SET_WALLETS', payload: payload})
+        const newState = walletsReducer(undefined, {type: 'SET_WALLETS', payload: payload})
         expect(newState).toEqual(payload)
     })
 })

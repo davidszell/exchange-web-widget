@@ -36,35 +36,36 @@ export const fetchExchangeRates = (): ThunkAction<Promise<void>, RootState, void
 export const doExchange = (
   fromCurrency: string,
   toCurrency: string,
-  direction: 'buy' | 'sell',
-  fromAmount: number | null,
-  toAmount: number | null,
+  exchangeAction: 'buy' | 'sell',
+  sourceAmount: number | null,
+  destinationAmount: number | null,
 ): ThunkAction<Promise<void>, RootState, void, AnyAction> => async (
   dispatch: ThunkDispatch<RootState, void, AnyAction>,
   getState: () => RootState,
 ): Promise<void> => new Promise<void>((resolve) => {
-  // API call for exchange should be called here
-  // Saving new values in store as a mock implementation
+  // A BE call should be here validating and updating the wallets based on the request
+  // Mocking server response
 
   const newState: WalletType[] = [];
   getState().wallets.forEach((wallet) => {
     if (wallet.name === fromCurrency) {
       let newBalance;
-      if (direction === 'buy') {
-        newBalance = wallet.balance + (fromAmount || 0);
+      if (exchangeAction === 'buy') {
+        newBalance = wallet.balance + (sourceAmount || 0);
       } else {
-        newBalance = wallet.balance - (fromAmount || 0);
+        newBalance = wallet.balance - (sourceAmount || 0);
       }
+
       newState.push({
         ...wallet,
         balance: newBalance,
       });
     } else if (wallet.name === toCurrency) {
       let newBalance;
-      if (direction === 'buy') {
-        newBalance = wallet.balance - (toAmount || 0);
+      if (exchangeAction === 'buy') {
+        newBalance = wallet.balance - (destinationAmount || 0);
       } else {
-        newBalance = wallet.balance + (toAmount || 0);
+        newBalance = wallet.balance + (destinationAmount || 0);
       }
       newState.push({
         ...wallet,

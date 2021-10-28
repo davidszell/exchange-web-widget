@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { formatFloatFloor } from '../../helpers';
 import { Input } from './AmountField.styled';
 
 type AmountFieldPropType = {
@@ -15,17 +16,17 @@ const AmountField = ({ amount, handleAmountChange }: AmountFieldPropType): JSX.E
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { valueAsNumber, value: valueFromInput } = event.target;
-    if (valueFromInput === '' || Number.isNaN(valueAsNumber)) {
+    if (valueFromInput === '' || Number.isNaN(valueAsNumber) || valueAsNumber <= 0) {
       handleAmountChange(null);
+      return;
     }
 
-    const adjustedValue = Number(`${Math.floor(Number(`${valueAsNumber}e2`))}e-2`);
-
-    handleAmountChange(adjustedValue);
+    handleAmountChange(formatFloatFloor(valueAsNumber));
   };
 
   return (
     <Input
+      data-testid="amount"
       type="number"
       value={displayValue}
       step="0.01"

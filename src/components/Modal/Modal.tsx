@@ -12,7 +12,7 @@ const Modal = ({ children, handleClose }: ModalPropsType): JSX.Element => {
   };
 
   return (
-    <Container>
+    <Container data-testid="modal">
       <Content>
         <CloseButton onClick={handleCloseClick}>X</CloseButton>
         { children }

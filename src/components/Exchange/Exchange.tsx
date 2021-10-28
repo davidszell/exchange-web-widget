@@ -3,30 +3,30 @@ import ExchangeItem from '../ExchangeItem';
 import {
   Container, DirectionButton, ExchangeButton, Header, Heading, SubHeader,
 } from './Exchange.styled';
-import useExchange from './useExchange';
+import useExchange from '../../hooks/useExchange';
 
 const Exchange = (): JSX.Element => {
   const {
-    fromWallet,
-    toWallet,
-    fromAmount,
-    toAmount,
+    sourceWallet,
+    destinationWallet,
+    sourceAmount,
+    destinationAmount,
     exchangeRate,
-    direction,
-    disableExchange,
-    handleFromWalletChange,
-    handleToWalletChange,
-    handleFromAmountChange,
-    handleToAmountChange,
+    exchangeAction,
+    isExchangeDisabled,
+    handleSourceWalletChange,
+    handleDestinationWalletChange,
+    handleSourceAmountChange,
+    handleDestinationAmountChange,
     handleExchange,
-    toggleDirection,
+    toggleExchangeAction,
   } = useExchange();
 
   const handleExchangeDirectionChange = () => {
-    toggleDirection();
+    toggleExchangeAction();
   };
 
-  if (Number.isNaN(exchangeRate)) {
+  if (exchangeRate === null) {
     return (
       <p>Loading...</p>
     );
@@ -35,39 +35,39 @@ const Exchange = (): JSX.Element => {
     <Container>
       <Heading>
         <Header data-testid="header">
-          {direction === 'sell' ? 'Sell' : 'Buy'}
+          {exchangeAction === 'sell' ? 'Sell' : 'Buy'}
           {' '}
-          {fromWallet.name}
+          {sourceWallet.name}
         </Header>
         <SubHeader data-testid="exchangeRate">
-          {fromWallet.symbol}
+          {sourceWallet.symbol}
           1 =
           {' '}
-          {toWallet.symbol}
+          {destinationWallet.symbol}
           {exchangeRate}
         </SubHeader>
       </Heading>
       <ExchangeItem
-        wallet={fromWallet}
-        handleWalletChange={handleFromWalletChange}
-        amount={fromAmount}
-        handleAmountChange={handleFromAmountChange}
+        wallet={sourceWallet}
+        handleWalletChange={handleSourceWalletChange}
+        amount={sourceAmount}
+        handleAmountChange={handleSourceAmountChange}
       />
-      <DirectionButton data-testid="directionButton" onClick={handleExchangeDirectionChange}>{direction === 'sell' ? '↓' : '↑'}</DirectionButton>
+      <DirectionButton data-testid="directionButton" onClick={handleExchangeDirectionChange}>{exchangeAction === 'sell' ? '↓' : '↑'}</DirectionButton>
       <ExchangeItem
-        wallet={toWallet}
-        handleWalletChange={handleToWalletChange}
-        amount={toAmount}
-        handleAmountChange={handleToAmountChange}
+        wallet={destinationWallet}
+        handleWalletChange={handleDestinationWalletChange}
+        amount={destinationAmount}
+        handleAmountChange={handleDestinationAmountChange}
       />
-      <ExchangeButton data-testid="exchangeButton" onClick={handleExchange} disabled={disableExchange}>
-        {direction === 'sell' ? 'Sell' : 'Buy'}
+      <ExchangeButton data-testid="exchangeButton" onClick={handleExchange} disabled={isExchangeDisabled}>
+        {exchangeAction === 'sell' ? 'Sell' : 'Buy'}
         {' '}
-        {fromWallet.name}
+        {sourceWallet.name}
         {' '}
-        {direction === 'sell' ? 'for' : 'with'}
+        {exchangeAction === 'sell' ? 'for' : 'with'}
         {' '}
-        {toWallet.name}
+        {destinationWallet.name}
       </ExchangeButton>
     </Container>
   );

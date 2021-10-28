@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '../../reduxHooks';
+import { useAppSelector } from '../../hooks/reduxHooks';
 import { WalletType } from '../../types';
 import {
   Balance, Container, InfoContainer, LongName, Name, WalletInfo,

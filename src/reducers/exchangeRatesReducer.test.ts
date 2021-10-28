@@ -1,31 +1,32 @@
 import { fetchExchangeRates } from "../actions"
-import exchangeRatesReducer from "./exchangeRatesReducer"
+import exchangeRatesReducer, { initialState } from "./exchangeRatesReducer"
 
 describe('exchangeRatesReducer', () => {
     it('returns state by default', () => {
-        const initialState = {
-            base: "EUR",
+        const state = {
+            base: "USD",
             rates: {
+                
             }
         }
 
-        const newState = exchangeRatesReducer(initialState, {type: 'foo'})
+        const newState = exchangeRatesReducer(state, {type: 'foo'})
+        expect(newState).toEqual(state)
+    })
+
+    it('uses initial state', () => {
+        const newState = exchangeRatesReducer(undefined, {type: 'foo'})
         expect(newState).toEqual(initialState)
     })
 
     it('handles SET_EXCHANGE_RATES correctly', () => {
-        const initialState = {
-            base: "EUR",
-            rates: {
-            }
-        }
-        const payload = {
+        const state = {
             base: "USD",
             rates: {
             }
         }
 
-        const newState = exchangeRatesReducer(initialState, {type: 'SET_EXCHANGE_RATES', payload: payload})
-        expect(newState).toEqual(payload)
+        const newState = exchangeRatesReducer(undefined, {type: 'SET_EXCHANGE_RATES', payload: state})
+        expect(newState).toEqual(state)
     })
 })
