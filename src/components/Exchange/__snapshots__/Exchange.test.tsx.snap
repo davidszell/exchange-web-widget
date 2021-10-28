@@ -82,17 +82,17 @@ exports[`Exchange matches snapshot 1`] = `
   background-color: white;
 }
 
-.c11 {
+.c12 {
   width: 100%;
 }
 
-.c10 {
+.c11 {
   border-color: #777;
   color: #777;
   font-size: 1.2em;
 }
 
-.c10:hover {
+.c11:hover {
   border-color: #157ae2;
   color: #157ae2;
   background-color: white;
@@ -112,6 +112,10 @@ exports[`Exchange matches snapshot 1`] = `
   gap: 10px;
 }
 
+.c4.error {
+  border-color: #e21534;
+}
+
 .c5 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -123,12 +127,26 @@ exports[`Exchange matches snapshot 1`] = `
   gap: 10px;
 }
 
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .c7::after {
   content: '⮁';
   margin-left: 10px;
 }
 
-.c9 {
+.c10 {
   font-size: 0.8em;
   margin: 0;
   color: #777;
@@ -181,17 +199,20 @@ exports[`Exchange matches snapshot 1`] = `
         value=""
       />
     </div>
-    <p
+    <div
       className="c9"
     >
-      Balance:
-      €
-      10
-    </p>
-    
+      <p
+        className="c10"
+      >
+        Balance:
+        €
+        10
+      </p>
+    </div>
   </div>
   <button
-    className="c6 c10"
+    className="c6 c11"
     data-testid="directionButton"
     onClick={[Function]}
   >
@@ -219,17 +240,20 @@ exports[`Exchange matches snapshot 1`] = `
         value=""
       />
     </div>
-    <p
+    <div
       className="c9"
     >
-      Balance:
-      £
-      20
-    </p>
-    
+      <p
+        className="c10"
+      >
+        Balance:
+        £
+        20
+      </p>
+    </div>
   </div>
   <button
-    className="c6 c11"
+    className="c6 c12"
     data-testid="exchangeButton"
     disabled={true}
     onClick={[Function]}

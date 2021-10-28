@@ -60,7 +60,7 @@ describe('ExchangeItem', () => {
       symbol: "€"
     }
     const tree = renderer
-      .create(<ExchangeItem wallet={wallet} handleWalletChange={() => { }} amount={0} handleAmountChange={() => { }} />)
+      .create(<ExchangeItem deduct wallet={wallet} handleWalletChange={() => { }} amount={0} handleAmountChange={() => { }} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   })
@@ -125,11 +125,32 @@ describe('ExchangeItem', () => {
       longName: "Euros",
       symbol: "€"
     }
-    const handleWalletChangeMock = jest.fn();
     render(<ExchangeItem wallet={wallet} handleWalletChange={() => { }} amount={0} handleAmountChange={() => { }} />);
     fireEvent.click(screen.getByText('EUR'));
     const modal = screen.getByTestId('modal');
     fireEvent.click(within(modal).getByText(/x/i));
     expect(screen.queryByTestId('modal')).toBeNull();
+  })
+
+  it('shows error when deducting and amount is larger than available balance', () => {
+    const wallet: WalletType = {
+      name: "EUR",
+      balance: 10,
+      longName: "Euros",
+      symbol: "€"
+    }
+    render(<ExchangeItem deduct wallet={wallet} handleWalletChange={() => { }} amount={11} handleAmountChange={() => { }} />);
+    expect(screen.getByText('Exceeds balance')).not.toBeNull();
+  })
+
+  it('does not show error when not deducting and amount is larger than available balance', () => {
+    const wallet: WalletType = {
+      name: "EUR",
+      balance: 10,
+      longName: "Euros",
+      symbol: "€"
+    }
+    render(<ExchangeItem wallet={wallet} handleWalletChange={() => { }} amount={11} handleAmountChange={() => { }} />);
+    expect(screen.queryByText('Exceeds balance')).toBeNull();
   })
 })

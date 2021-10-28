@@ -58,6 +58,10 @@ exports[`ExchangeItem matches snapshot 1`] = `
   gap: 10px;
 }
 
+.c0.error {
+  border-color: #e21534;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -69,12 +73,26 @@ exports[`ExchangeItem matches snapshot 1`] = `
   gap: 10px;
 }
 
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .c3::after {
   content: '⮁';
   margin-left: 10px;
 }
 
-.c5 {
+.c6 {
   font-size: 0.8em;
   margin: 0;
   color: #777;
@@ -102,13 +120,16 @@ exports[`ExchangeItem matches snapshot 1`] = `
       value=""
     />
   </div>
-  <p
+  <div
     className="c5"
   >
-    Balance:
-    €
-    10
-  </p>
-  
+    <p
+      className="c6"
+    >
+      Balance:
+      €
+      10
+    </p>
+  </div>
 </div>
 `;

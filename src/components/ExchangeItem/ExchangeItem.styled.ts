@@ -8,12 +8,22 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    &.error {
+        border-color: #e21534;
+    }
 `;
 
 export const CurrencyContainer = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
+`;
+
+export const InfoContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 export const CurrencyButton = styled(Button)`
@@ -27,4 +37,10 @@ export const Balance = styled.p`
     font-size: 0.8em;
     margin: 0;
     color: #777;
+`;
+
+export const Error = styled.p`
+    font-size: 0.8em;
+    margin: 0;
+    color: #e21534;
 `;
