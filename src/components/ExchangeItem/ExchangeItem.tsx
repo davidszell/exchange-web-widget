@@ -25,11 +25,11 @@ const ExchangeItem = ({
     setExceedsBalance(!!deduct && wallet.balance < (amount || 0));
   }, [amount, deduct, wallet.balance]);
 
-  const handleShowWalletPicker = () => {
+  const handleOpenWalletPicker = () => {
     setShowWalletPicker(true);
   };
 
-  const handleHideWalletPicker = () => {
+  const handleCloseWalletPicker = () => {
     setShowWalletPicker(false);
   };
 
@@ -41,7 +41,7 @@ const ExchangeItem = ({
   return (
     <Container className={exceedsBalance ? 'error' : ''}>
       <CurrencyContainer>
-        <CurrencyButton onClick={handleShowWalletPicker}>{wallet.name}</CurrencyButton>
+        <CurrencyButton onClick={handleOpenWalletPicker}>{wallet.name}</CurrencyButton>
         <AmountField
           amount={amount}
           handleAmountChange={handleAmountChange}
@@ -58,7 +58,7 @@ const ExchangeItem = ({
         )}
       </InfoContainer>
       {showWalletPicker && (
-        <Modal handleClose={handleHideWalletPicker}>
+        <Modal handleClose={handleCloseWalletPicker}>
           <WalletPicker handleWalletChange={handleWalletPicked} />
         </Modal>
       )}

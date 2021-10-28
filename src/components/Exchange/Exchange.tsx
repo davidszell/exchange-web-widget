@@ -22,10 +22,6 @@ const Exchange = (): JSX.Element => {
     toggleExchangeAction,
   } = useExchange();
 
-  const handleExchangeDirectionChange = () => {
-    toggleExchangeAction();
-  };
-
   if (exchangeRate === null) {
     return (
       <p>Loading...</p>
@@ -54,7 +50,7 @@ const Exchange = (): JSX.Element => {
         handleAmountChange={handleSourceAmountChange}
         deduct={exchangeAction === 'sell'}
       />
-      <DirectionButton data-testid="directionButton" onClick={handleExchangeDirectionChange}>{exchangeAction === 'sell' ? '↓' : '↑'}</DirectionButton>
+      <DirectionButton data-testid="directionButton" onClick={toggleExchangeAction}>{exchangeAction === 'sell' ? '↓' : '↑'}</DirectionButton>
       <ExchangeItem
         wallet={destinationWallet}
         handleWalletChange={handleDestinationWalletChange}
