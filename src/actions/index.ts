@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import axios from 'axios';
 import { RootState } from '../store';
 import { ExchangeRatesType, WalletType } from '../types';
 
@@ -22,14 +23,12 @@ export const setWallets = (wallets: WalletType[]): SetWalletsActionType => ({ ty
 export const fetchExchangeRates = (): ThunkAction<Promise<void>, RootState, void, AnyAction> => async (
   dispatch: ThunkDispatch<RootState, void, AnyAction>,
 ): Promise<void> => new Promise<void>((resolve) => {
-  fetch(`https://openexchangerates.org/api/latest.json?app_id=${process.env.API_KEY}`)
+  axios.get(`https://openexchangerates.org/api/latest.json?app_id=${process.env.API_KEY}`)
     .then((response) => {
-      if (response.status !== 200) {
-        throw new Error('Failed to fetch exchange rates');
+      if (response.status === 200) {
+        dispatch(setExchangeRates(response.data));
       }
-      return response.json();
     })
-    .then((json) => dispatch(setExchangeRates(json)))
     .finally(resolve);
 });
 

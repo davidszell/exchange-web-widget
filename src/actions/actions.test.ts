@@ -1,5 +1,8 @@
+import axios from "axios";
 import { doExchange, fetchExchangeRates, setExchangeRates, setWallets } from ".";
 import { WalletType } from "../types";
+
+jest.mock("axios");
 
 describe('actions', () => {
   it('setExchangeRates returns the correct action', () => {
@@ -139,6 +142,60 @@ describe('actions', () => {
 
       await doExchange('EUR', 'GBP', 'buy', 1, 2)(dispatchMock, getStateMock);
       expect(dispatchMock).toBeCalledWith(expectedAction);
+    })
+  })
+
+  describe('fetchExchangeRates', () => {
+    const exchangeRateResponse = {
+      status: 200,
+      data: {
+        base: "EUR",
+        rates: {
+          EUR: 1,
+          GBP: 2,
+          USD: 3
+        }
+      }
+    }
+
+    beforeEach(() => {
+      (axios.get as jest.Mock).mockClear();
+    })
+    
+    it('fetches exchange rates', async () => {
+      (axios.get as jest.Mock).mockResolvedValue(exchangeRateResponse);
+      const dispatchMock = jest.fn();
+      const getStateMock = jest.fn(() => ({
+        exchangeRates: {},
+        wallets: []
+      }));
+      await fetchExchangeRates()(dispatchMock, getStateMock);
+      expect(dispatchMock).toBeCalled();
+    })
+    
+    it('updates status on successful request', async () => {
+      (axios.get as jest.Mock).mockResolvedValue(exchangeRateResponse);
+      const dispatchMock = jest.fn();
+      const getStateMock = jest.fn(() => ({
+        exchangeRates: {},
+        wallets: []
+      }));
+      await fetchExchangeRates()(dispatchMock, getStateMock);
+      expect(dispatchMock).toBeCalledWith(setExchangeRates(exchangeRateResponse.data));
+    })
+    
+    it('does not update status on failed request', async () => {
+      (axios.get as jest.Mock).mockResolvedValue({
+        ...exchangeRateResponse,
+        status: 404
+      });
+      const dispatchMock = jest.fn();
+      const getStateMock = jest.fn(() => ({
+        exchangeRates: {},
+        wallets: []
+      }));
+      await fetchExchangeRates()(dispatchMock, getStateMock);
+      expect(dispatchMock).not.toBeCalled();
     })
   })
 })
