@@ -11,7 +11,7 @@ export const WalletInfo = styled.li`
   gap: 40px;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
-  color: #222;
+  color: #054A92;
   padding: 10px 40px;
 
   &:hover {

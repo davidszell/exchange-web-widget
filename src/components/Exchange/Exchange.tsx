@@ -50,7 +50,7 @@ const Exchange = (): JSX.Element => {
         handleAmountChange={handleSourceAmountChange}
         deduct={exchangeAction === 'sell'}
       />
-      <DirectionButton data-testid="directionButton" onClick={toggleExchangeAction}>{exchangeAction === 'sell' ? '↓' : '↑'}</DirectionButton>
+      <DirectionButton data-testid="directionButton" onClick={toggleExchangeAction}>{exchangeAction === 'sell' ? 'ᐁ' : 'ᐃ'}</DirectionButton>
       <ExchangeItem
         wallet={destinationWallet}
         handleWalletChange={handleDestinationWalletChange}
