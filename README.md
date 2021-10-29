@@ -2,7 +2,7 @@
 Currency Exchange Web Widget.
 
 ## Running the application
-Before building the application create a `.env` file in the project's root with the following content:
+Before running the application create a `.env` file in the project's root with the following content:
 
 ``
 API_KEY=<OPENEXCHANGERATES.ORG API KEY>
