@@ -83,13 +83,13 @@ describe('Exchange', () => {
 
   it('Shows correct button label', () => {
     render(<Exchange />);
-    expect(screen.getByTestId('directionButton')).toHaveTextContent(/^↓$/);
+    expect(screen.getByTestId('directionButton')).toHaveTextContent(/^ᐁ$/);
   });
 
   it('Shows correct button after exchange action change', () => {
     render(<Exchange />);
     fireEvent.click(screen.getByTestId('directionButton'));
-    expect(screen.getByTestId('directionButton')).toHaveTextContent(/^↑$/);
+    expect(screen.getByTestId('directionButton')).toHaveTextContent(/^ᐃ$/);
   });
 
   it('Shows correct exchange button label', () => {

@@ -28,7 +28,7 @@ export const InfoContainer = styled.div`
 
 export const CurrencyButton = styled(Button)`
     &::after {
-        content: '⮁';
+        content: 'ᐱ';
         margin-left: 10px;
     }
 `;

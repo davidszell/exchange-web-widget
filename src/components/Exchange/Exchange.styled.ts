@@ -4,11 +4,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 50px;
-  border: 2px solid #157ae2;
   border-radius: 10px;
   width: 500px;
-  color: #222;
+  color: #054A92;
   gap: 20px;
+  background-color: white;
+  box-shadow: 5px 10px 50px 1px rgba(0,0,0,0.3);
 `;
 
 export const Heading = styled.div`
@@ -19,7 +20,7 @@ export const Heading = styled.div`
 
 export const Header = styled.h1`
   margin: 0;
-  color: #222;
+  color: #054A92;
 `;
 
 export const SubHeader = styled.p`
@@ -38,7 +39,8 @@ export const Button = styled.button`
   font-weight: 500;
   &:hover {
     color: white;
-    background-color: #157ae2;
+    border-color: #054A92;
+    background-color: #054A92;
   }
   &:disabled,
   &[disabled],
@@ -46,8 +48,8 @@ export const Button = styled.button`
   &[disabled]:hover {
     cursor: unset;
     color: #777;
-    border-color: #777;
-    background-color: white;
+    border-color: #ddd;
+    background-color: #ddd;
   }
 `;
 

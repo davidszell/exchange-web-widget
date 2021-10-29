@@ -28,11 +28,12 @@ exports[`Exchange matches snapshot 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   padding: 50px;
-  border: 2px solid #157ae2;
   border-radius: 10px;
   width: 500px;
-  color: #222;
+  color: #054A92;
   gap: 20px;
+  background-color: white;
+  box-shadow: 5px 10px 50px 1px rgba(0,0,0,0.3);
 }
 
 .c1 {
@@ -48,7 +49,7 @@ exports[`Exchange matches snapshot 1`] = `
 
 .c2 {
   margin: 0;
-  color: #222;
+  color: #054A92;
 }
 
 .c3 {
@@ -69,7 +70,8 @@ exports[`Exchange matches snapshot 1`] = `
 
 .c6:hover {
   color: white;
-  background-color: #157ae2;
+  border-color: #054A92;
+  background-color: #054A92;
 }
 
 .c6:disabled,
@@ -78,8 +80,8 @@ exports[`Exchange matches snapshot 1`] = `
 .c6[disabled]:hover {
   cursor: unset;
   color: #777;
-  border-color: #777;
-  background-color: white;
+  border-color: #ddd;
+  background-color: #ddd;
 }
 
 .c12 {
@@ -142,7 +144,7 @@ exports[`Exchange matches snapshot 1`] = `
 }
 
 .c7::after {
-  content: '⮁';
+  content: 'ᐱ';
   margin-left: 10px;
 }
 
@@ -216,7 +218,7 @@ exports[`Exchange matches snapshot 1`] = `
     data-testid="directionButton"
     onClick={[Function]}
   >
-    ↓
+    ᐁ
   </button>
   <div
     className="c4"
